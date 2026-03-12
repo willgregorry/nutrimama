@@ -5,6 +5,30 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  --font-jakarta: var(--font-jakarta);
+
+  --color-primary: #8b2635;
+  --color-primary-hover: #7d2230;
+  --color-primary-active: #6f1e2a;
+  --color-primary-light: #f3e9eb;
+  --color-primary-light-hover: #eedee1;
+  --color-primary-light-active: #dbbcc0;
+  --color-primary-dark: #681d28;
+  --color-primary-dark-hover: #531720;
+  --color-primary-dark-active: #3f1118;
+  --color-primary-darker: #310d13;
+
+  --color-neutral: #fcf8f8;
+  --color-neutral-hover: #e3dfdf;
+  --color-neutral-active: #cac6c6;
+  --color-neutral-light: #fffefe;
+  --color-neutral-light-hover: #fffefe;
+  --color-neutral-light-active: #fefdfd;
+  --color-neutral-dark: #bdbaba;
+  --color-neutral-dark-hover: #979595;
+  --color-neutral-dark-active: #717070;
+  --color-neutral-darker: #585757;
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-sans);
@@ -32,8 +56,6 @@
   --color-muted: var(--muted);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-secondary: var(--secondary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-primary: var(--primary);
   --color-popover-foreground: var(--popover-foreground);
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
@@ -116,14 +138,6 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-  html {
-    @apply font-sans;
-  }
+* {
+  @apply font-jakarta;
 }
