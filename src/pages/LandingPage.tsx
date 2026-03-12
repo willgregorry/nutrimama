@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import Hero from "@/components/sections/Hero";
+import About from "@/components/sections/About";
 import Footer from "@/components/Footer";
 
 export default function LandingPage() {
@@ -8,6 +9,7 @@ export default function LandingPage() {
             <Header />
 
             <Hero />
+            <About />
 
             <Footer />
         </main>

@@ -1,4 +1,8 @@
+'use client'
+
 import { Button } from "@/components/ui/button";
+import { motion } from "motion/react";
+
 import Image from "next/image";
 
 export default function Hero() {
@@ -6,7 +10,11 @@ export default function Hero() {
         <section className="relative flex items-center justify-center w-full min-h-screen bg-linear-to-b from-primary-light via-primary-light-hover via-50% to-primary-light-active to-90% pt-24 px-4 overflow-hidden">
             <div className="max-w-6xl mt-12 mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-8 items-center z-10">
 
-                <div className="flex flex-col items-center lg:items-start text-center lg:text-left space-y-4 lg:pr-12">
+                <motion.div
+                    initial={{ opacity: 0, x: -30 }}
+                    animate={{ opacity: 1, x: 50 }}
+                    transition={{ duration: 1 }}
+                    className="flex flex-col items-center lg:items-start text-center lg:text-left space-y-4 lg:pr-12">
                     <h1 className="text-5xl sm:text-6xl font-bold text-primary tracking-tight pb-2">
                         NutriMama
                     </h1>
@@ -21,9 +29,13 @@ export default function Hero() {
                             Get Started
                         </Button>
                     </div>
-                </div>
+                </motion.div>
 
-                <div className="relative flex justify-center lg:justify-end items-end w-full lg:h-[600px] mt-12 lg:mt-0 pb-12 pr-0 lg:pr-24">
+                <motion.div
+                    initial={{ opacity: 0, x: 80 }}
+                    animate={{ opacity: 1, x: 30 }}
+                    transition={{ duration: 1 }}
+                    className="relative flex justify-center lg:justify-end items-end w-full lg:h-[600px] mt-12 lg:mt-0 pb-12 pr-0 lg:pr-24">
 
                     <div className="relative w-[280px] sm:w-[340px] h-[360px] sm:h-[460px]">
 
@@ -48,7 +60,7 @@ export default function Hero() {
                             />
                         </div>
                     </div>
-                </div>
+                </motion.div>
 
             </div>
         </section>
