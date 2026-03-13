@@ -7,8 +7,8 @@ import Image from "next/image";
 
 export default function Hero() {
     return (
-        <section className="relative flex items-center justify-center w-full min-h-screen bg-linear-to-b from-primary-light via-primary-light-hover via-50% to-primary-light-active to-90% pt-24 px-4 overflow-hidden">
-            <div className="max-w-6xl mt-12 mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-8 items-center z-10">
+        <section className="relative flex items-center justify-center w-full min-h-screen bgc-gradient pt-24 px-4 overflow-hidden">
+            <div className="max-w-7xl mt-12 mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-8 items-center z-10">
 
                 <motion.div
                     initial={{ opacity: 0, x: -30 }}
@@ -24,7 +24,7 @@ export default function Hero() {
                     <div className="pt-6">
                         <Button
                             variant="default"
-                            className="h-14 w-56 text-lg text-white rounded-2xl shadow-lg ease-in-out transition-transform hover:-translate-y-0.5"
+                            className="h-14 w-56 text-lg text-neutral-light rounded-2xl shadow-lg ease-in-out transition-transform hover:-translate-y-0.5"
                         >
                             Get Started
                         </Button>

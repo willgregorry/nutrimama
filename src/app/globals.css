@@ -7,6 +7,8 @@
 @theme inline {
   --font-jakarta: var(--font-jakarta);
 
+  --color-black: #252525;
+
   --color-primary: #8b2635;
   --color-primary-hover: #7d2230;
   --color-primary-active: #6f1e2a;
@@ -140,4 +142,12 @@
 
 * {
   @apply font-jakarta;
+}
+
+.bgc-gradient {
+  @apply bg-linear-to-b from-primary-light via-primary-light-hover via-50% to-primary-light-active to-90%;
+}
+
+.bgc-gradient-invert {
+  @apply bg-linear-to-b from-primary-light-active via-primary-light-hover via-50% to-primary-light to-90%;
 }
