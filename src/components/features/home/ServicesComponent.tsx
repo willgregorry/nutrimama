@@ -18,7 +18,8 @@ export function ServicesDesc({ children }: { children: React.ReactNode }) {
 
 export default function ServicesComponent({ children }: { children: React.ReactNode }) {
     return (
-        <section className="flex flex-col gap-4 justify-center items-center px-10 py-20 w-80 text-center rounded-2xl shadow-lg text-neutral bg-primary h-100">
+        <section
+            className="flex flex-col gap-4 justify-center items-center px-10 py-20 w-80 text-center rounded-2xl shadow-lg transition-all duration-300 ease-in-out hover:-translate-y-2 hover:text-primary text-neutral hover-service-gradient bg-primary hover:outline-2 hover:outline-primary hover:bg-primary-light-hover h-100">
             {children}
         </section>
     )

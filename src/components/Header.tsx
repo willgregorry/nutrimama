@@ -40,7 +40,9 @@ export default function Header() {
         >
             <div className="flex justify-between items-center w-full">
 
-                <Image className="w-32 lg:w-40" src="/logo.png" alt="NutriMama Logo" width={432} height={168} />
+                <a href="/">
+                    <Image className="w-32 lg:w-40" src="/logo.png" alt="NutriMama Logo" width={432} height={168} />
+                </a>
 
                 <nav className="hidden gap-12 justify-center items-center ml-32 text-lg font-semibold lg:flex xl:gap-24 text-primary-dark">
                     <a href="/#about" className="transition-all ease-in-out hover:text-primary hover:border-b-2 duration-50">About</a>

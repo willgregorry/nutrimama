@@ -151,3 +151,13 @@
 .bgc-gradient-invert {
   @apply bg-linear-to-b from-primary-light-active via-primary-light-hover via-50% to-primary-light to-90%;
 }
+
+.hover-service-gradient {
+  transition: all 0.3s ease-in-out;
+}
+
+.hover-service-gradient:hover {
+  background-image:
+    radial-gradient(circle at top left, var(--color-primary-light-active) 0%, transparent 45%),
+    radial-gradient(circle at bottom right, var(--color-primary-light-active) 0%, transparent 45%);
+}

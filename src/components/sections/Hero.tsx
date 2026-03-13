@@ -7,15 +7,15 @@ import Image from "next/image";
 
 export default function Hero() {
     return (
-        <section className="relative flex items-center justify-center w-full min-h-screen bgc-gradient pt-24 px-4 overflow-hidden">
-            <div className="max-w-7xl mt-12 mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-8 items-center z-10">
+        <section className="flex overflow-hidden relative justify-center items-center px-24 pt-24 w-full min-h-screen bgc-gradient">
+            <div className="grid z-10 grid-cols-1 gap-16 items-center mx-auto mt-12 w-full max-w-7xl lg:grid-cols-2 lg:gap-8">
 
                 <motion.div
                     initial={{ opacity: 0, x: -30 }}
                     animate={{ opacity: 1, x: 50 }}
                     transition={{ duration: 1 }}
-                    className="flex flex-col items-center lg:items-start text-center lg:text-left space-y-4 lg:pr-12">
-                    <h1 className="text-5xl sm:text-6xl font-bold text-primary tracking-tight pb-2">
+                    className="flex flex-col items-center space-y-4 text-center lg:items-start lg:text-left lg:pr-12">
+                    <h1 className="pb-2 text-5xl font-bold tracking-tight sm:text-6xl text-primary">
                         NutriMama
                     </h1>
                     <p className="text-xl sm:text-2xl text-primary font-medium leading-relaxed max-w-[500px]">
@@ -45,7 +45,7 @@ export default function Hero() {
                         <div className="absolute right-[-64px] top-[-64px] w-full h-full rounded-t-full border-t border-r border-l border-primary/10 -z-10" />
 
                         <div
-                            className="absolute inset-0 w-full h-full rounded-t-full overflow-hidden shadow-2xl z-10 bg-white"
+                            className="overflow-hidden absolute inset-0 z-10 w-full h-full bg-white rounded-t-full shadow-2xl"
                             style={{
                                 maskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)',
                                 WebkitMaskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)'
@@ -54,7 +54,7 @@ export default function Hero() {
                             <Image
                                 src="/hero.png"
                                 alt="Ibu Anak"
-                                className="w-full h-full object-cover"
+                                className="object-cover w-full h-full"
                                 width={800}
                                 height={600}
                             />
