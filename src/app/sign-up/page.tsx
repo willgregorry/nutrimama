@@ -1,3 +1,5 @@
+import SignUpPage from "@/pages/SignUpPage"
+
 export const metadata = {
     title: "Sign Up - NutriMama",
     description: "Daftar akun NutriMama untuk memulai perjalanan kehamilan yang lebih sehat dan terencana.",
@@ -5,8 +7,6 @@ export const metadata = {
 
 export default function SignUp() {
     return (
-        <>
-            sign up page
-        </>
+        <SignUpPage />
     )
 }

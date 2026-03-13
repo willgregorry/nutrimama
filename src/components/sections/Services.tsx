@@ -11,7 +11,7 @@ export default function Services() {
                         Services
                     </h1>
                 </div>
-                <div className="flex gap-32 justify-between items-center w-full h-full text-primary">
+                <div className="flex flex-col gap-32 justify-between items-center w-full h-full lg:flex-row text-primary">
                     <ServicesComponent>
                         <ServicesIcon icon={Baby} />
                         <ServicesDesc>

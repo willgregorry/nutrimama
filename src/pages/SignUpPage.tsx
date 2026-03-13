@@ -4,39 +4,19 @@ import Header from "@/components/Header";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
-import { redirect } from "next/navigation";
+import { useState } from "react";
 
-const signInSchema = z.object({
-    email: z.string().min(1, { message: "Email wajib diisi" }).email({ message: "Format email tidak valid" }),
-    password: z.string().min(8, { message: "Password minimal 8 karakter" })
-});
+export default function SignUpPage() {
+    const [isLoading, setIsLoading] = useState(false);
 
-type SignInFormValues = z.infer<typeof signInSchema>;
 
-export default function SignInPage() {
-
-    const {
-        register,
-        handleSubmit,
-        formState: { errors, isSubmitting }
-    } = useForm<SignInFormValues>({
-        resolver: zodResolver(signInSchema),
-        defaultValues: {
-            email: "",
-            password: "",
-        }
-    });
-
-    const onSubmit = async (data: SignInFormValues) => {
-        try {
-            await new Promise(resolve => setTimeout(resolve, 1000));
-            redirect("/dashboard")
-        } catch (error) {
-            console.error("Login Failed:", error);
-        }
+    // Masih simulasi proses teken tombol daftar
+    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        setIsLoading(true);
+        setTimeout(() => {
+            setIsLoading(false);
+        }, 1000);
     };
 
     return (
@@ -74,23 +54,34 @@ export default function SignInPage() {
 
                 <div className="flex-1 flex items-center justify-center w-full mt-16 lg:mt-0">
                     <div className="w-full max-w-[480px] bg-white rounded-[40px] shadow-xl p-10 sm:p-12 flex flex-col gap-4">
-                        <h2 className="text-3xl font-bold text-black mb-2">Masuk ke akun Anda</h2>
+                        <h2 className="text-3xl font-bold text-black mb-2">
+                            Buat akun Anda
+                        </h2>
 
-                        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
+                        <form onSubmit={onSubmit} className="flex flex-col gap-4">
 
                             <div className="flex flex-col gap-2">
                                 <label className="text-sm font-semibold text-black" htmlFor="email">Email</label>
                                 <input
                                     id="email"
                                     type="email"
+                                    name="email"
+                                    required
                                     placeholder="Masukkan email Anda"
-                                    className={`w-full border-b-[1.5px] py-3 bg-transparent outline-none focus:border-primary placeholder:text-gray-400 font-medium transition-colors ${errors.email ? "border-red-500 text-red-500" : "border-gray-400 text-black"
-                                        }`}
-                                    {...register("email")}
+                                    className="w-full border-b-[1.5px] py-3 bg-transparent outline-none focus:border-primary placeholder:text-gray-400 font-medium transition-colors border-gray-400 text-black"
                                 />
-                                {errors.email && (
-                                    <span className="text-xs font-semibold text-red-500 mt-1">{errors.email.message}</span>
-                                )}
+                            </div>
+
+                            <div className="flex flex-col gap-2 mt-2">
+                                <label className="text-sm font-semibold text-black" htmlFor="username">Username</label>
+                                <input
+                                    id="username"
+                                    type="text"
+                                    name="username"
+                                    required
+                                    placeholder="Masukkan username Anda"
+                                    className="w-full border-b-[1.5px] py-3 bg-transparent outline-none focus:border-primary placeholder:text-gray-400 font-medium transition-colors border-gray-400 text-black"
+                                />
                             </div>
 
                             <div className="flex flex-col gap-2 mt-2">
@@ -98,34 +89,37 @@ export default function SignInPage() {
                                 <input
                                     id="password"
                                     type="password"
+                                    name="password"
+                                    required
                                     placeholder="Masukkan password Anda"
-                                    className={`w-full border-b-[1.5px] py-3 bg-transparent outline-none focus:border-primary placeholder:text-gray-400 font-medium transition-colors ${errors.password ? "border-red-500 text-red-500" : "border-gray-400 text-black"
-                                        }`}
-                                    {...register("password")}
+                                    className="w-full border-b-[1.5px] py-3 bg-transparent outline-none focus:border-primary placeholder:text-gray-400 font-medium transition-colors border-gray-400 text-black"
                                 />
-                                {errors.password && (
-                                    <span className="text-xs font-semibold text-red-500 mt-1">{errors.password.message}</span>
-                                )}
                             </div>
 
-                            <div className="w-full mt-1">
-                                <Link href="#" className="text-[13px] font-bold text-black underline underline-offset-2 hover:text-primary transition-colors">
-                                    Lupa password?
-                                </Link>
+                            <div className="flex flex-col gap-2 mt-2">
+                                <label className="text-sm font-semibold text-black" htmlFor="password">Konfirmasi Password</label>
+                                <input
+                                    id="password"
+                                    type="password"
+                                    name="password"
+                                    required
+                                    placeholder="Masukkan kembali password Anda"
+                                    className="w-full border-b-[1.5px] py-3 bg-transparent outline-none focus:border-primary placeholder:text-gray-400 font-medium transition-colors border-gray-400 text-black"
+                                />
                             </div>
 
                             <Button
                                 type="submit"
-                                disabled={isSubmitting}
+                                disabled={isLoading}
                                 variant="default"
-                                className="w-full h-14 rounded-2xl mt-4 text-white text-lg font-semibold shadow-md transition-colors disabled:opacity-70"
+                                className="w-full h-14 rounded-2xl mt-6 text-white text-lg font-semibold shadow-md transition-colors disabled:opacity-70"
                             >
-                                {isSubmitting ? "Memproses..." : "Masuk"}
+                                {isLoading ? "Memproses..." : "Daftar"}
                             </Button>
                         </form>
 
                         <p className="text-[13px] text-center font-bold text-black mt-2">
-                            Belum punya akun? <Link href="/sign-up" className="text-primary hover:text-primary-hover transition-colors">Daftar sekarang</Link>
+                            Sudah punya akun? <Link href="/sign-in" className="text-primary hover:text-primary-hover transition-colors">Masuk sekarang</Link>
                         </p>
                     </div>
                 </div>

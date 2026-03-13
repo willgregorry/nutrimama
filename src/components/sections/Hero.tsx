@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { motion } from "motion/react";
 
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Hero() {
     return (
@@ -22,12 +23,14 @@ export default function Hero() {
                         NutriMama adalah website yang membantu ibu hamil dalam menjaga pemenuhan gizi selama masa kehamilan
                     </p>
                     <div className="pt-6">
-                        <Button
-                            variant="default"
-                            className="h-14 w-56 text-lg text-neutral-light rounded-2xl shadow-lg ease-in-out transition-transform hover:-translate-y-0.5"
-                        >
-                            Get Started
-                        </Button>
+                        <Link href="/sign-in">
+                            <Button
+                                variant="default"
+                                className="h-14 w-56 text-lg text-neutral-light rounded-2xl shadow-lg ease-in-out transition-transform hover:-translate-y-0.5"
+                            >
+                                Get Started
+                            </Button>
+                        </Link>
                     </div>
                 </motion.div>
 
