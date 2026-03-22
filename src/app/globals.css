@@ -9,7 +9,28 @@
 
   --color-black: #252525;
 
-  --color-primary: #8b2635;
+  --color-primary: #E31A38;
+  --color-primary-p1: #F8C4CB;
+  --color-primary-p2: #F39AA8;
+  --color-primary-p3: #EA4860;
+  --color-primary-p5: #CE1833;
+  --color-primary-p6: #B7152D;
+  --color-primary-p7: #A01228;
+  --color-primary-p8: #891022;
+  --color-primary-p9: #720D1C;
+  --color-primary-p10: #5C0A17;
+
+  --color-neutral-p1: #F5F5F5;
+  --color-neutral-p2: #F0F0F0;
+  --color-neutral-p3: #E6E6E6;
+  --color-neutral-p4: #E0E0E0;
+  --color-neutral-p5: #DBDBDB;
+  --color-neutral-p6: #D6D6D6;
+  --color-neutral-p7: #D1D1D1;
+  --color-neutral-p8: #CCCCCC;
+  --color-neutral-p9: #C7C7C7;
+  --color-neutral-p10: #C2C2C2;
+
   --color-primary-hover: #7d2230;
   --color-primary-active: #6f1e2a;
   --color-primary-light: #f3e9eb;
@@ -156,8 +177,27 @@
   transition: all 0.3s ease-in-out;
 }
 
+.bgc-main {
+  background-image:
+    radial-gradient(circle at top left, var(--color-primary-p2) 0%, transparent 15%),
+    radial-gradient(circle at bottom right, var(--color-primary-p2) 0%, transparent 15%);
+  z-index: 0;
+}
+
 .hover-service-gradient:hover {
   background-image:
     radial-gradient(circle at top left, var(--color-primary-light-active) 0%, transparent 45%),
     radial-gradient(circle at bottom right, var(--color-primary-light-active) 0%, transparent 45%);
+}
+
+.bg-radial-blobs {
+  background-image:
+    radial-gradient(200px circle at 5% 2%, color-mix(in srgb, var(--color-primary-p5) 40%, transparent) 0%, transparent 100%),
+    radial-gradient(250px circle at 95% 22%, color-mix(in srgb, var(--color-primary-p5) 30%, transparent) 0%, transparent 100%),
+    radial-gradient(250px circle at 5% 45%, color-mix(in srgb, var(--color-primary-p5) 35%, transparent) 0%, transparent 100%),
+    radial-gradient(200px circle at 95% 65%, color-mix(in srgb, var(--color-primary-p5) 30%, transparent) 0%, transparent 100%),
+    radial-gradient(250px circle at 5% 85%, color-mix(in srgb, var(--color-primary-p5) 40%, transparent) 0%, transparent 100%),
+    radial-gradient(200px circle at 95% 95%, color-mix(in srgb, var(--color-primary-p5) 30%, transparent) 0%, transparent 100%);
+  background-repeat: no-repeat;
+  z-index: 0;
 }

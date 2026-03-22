@@ -1,6 +1,7 @@
 'use client'
 
 import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
 import { motion } from "motion/react";
 
 import Image from "next/image";
@@ -8,7 +9,7 @@ import Link from "next/link";
 
 export default function Hero() {
     return (
-        <section className="flex overflow-hidden relative justify-center items-center px-24 pt-24 w-full min-h-screen bgc-gradient">
+        <section className="flex overflow-hidden relative justify-center items-center px-24 pt-24 w-full min-h-screen">
             <div className="grid z-10 grid-cols-1 gap-16 items-center mx-auto mt-12 w-full max-w-7xl lg:grid-cols-2 lg:gap-8">
 
                 <motion.div
@@ -19,16 +20,17 @@ export default function Hero() {
                     <h1 className="pb-2 text-5xl font-bold tracking-tight sm:text-6xl text-primary">
                         NutriMama
                     </h1>
-                    <p className="text-xl sm:text-2xl text-primary font-medium leading-relaxed max-w-[500px]">
+                    <p className="text-xl sm:text-2xl text-black font-medium leading-relaxed max-w-[500px]">
                         NutriMama adalah website yang membantu ibu hamil dalam menjaga pemenuhan gizi selama masa kehamilan
                     </p>
                     <div className="pt-6">
-                        <Link href="/sign-in">
+                        <Link href="/auth/sign-in">
                             <Button
                                 variant="default"
-                                className="h-14 w-56 text-lg text-neutral-light rounded-2xl shadow-lg ease-in-out transition-transform hover:-translate-y-0.5"
+                                className="flex justify-around px-8 items-center gap-2 h-14 w-64 text-lg text-neutral-light rounded-2xl shadow-lg ease-in-out transition-transform hover:-translate-y-0.5"
                             >
-                                Get Started
+                                <p>Mulai Sekarang</p>
+                                <ArrowRight />
                             </Button>
                         </Link>
                     </div>

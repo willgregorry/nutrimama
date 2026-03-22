@@ -13,11 +13,11 @@ export default function Header() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     const handleSignUpClick = () => {
-        redirect("/sign-up");
+        redirect("/auth/sign-up");
     }
 
     const handleSignInClick = () => {
-        redirect("/sign-in");
+        redirect("/auth/sign-in");
     }
 
     useEffect(() => {
@@ -40,22 +40,22 @@ export default function Header() {
         >
             <div className="flex justify-between items-center w-full">
 
-                <a href="/">
+                <Link href="/">
                     <Image className="w-32 lg:w-40" src="/logo.png" alt="NutriMama Logo" width={432} height={168} />
-                </a>
+                </Link>
 
                 <nav className="hidden gap-12 justify-center items-center ml-32 text-lg font-semibold lg:flex xl:gap-24 text-primary-dark">
-                    <a href="/#about" className="transition-all ease-in-out hover:text-primary hover:border-b-2 duration-50">About</a>
-                    <a href="/#services" className="transition-all ease-in-out hover:text-primary hover:border-b-2 duration-50">Services</a>
-                    <a href="/#features" className="transition-all ease-in-out hover:text-primary hover:border-b-2 duration-50">Features</a>
+                    <Link href="/#about" className="transition-all ease-in-out hover:text-primary hover:border-b-2 duration-50">Tentang</Link>
+                    <Link href="/#services" className="transition-all ease-in-out hover:text-primary hover:border-b-2 duration-50">Layanan</Link>
+                    <Link href="/#features" className="transition-all ease-in-out hover:text-primary hover:border-b-2 duration-50">Fitur</Link>
                 </nav>
 
                 <section className="hidden gap-4 lg:flex">
-                    <Button onClick={handleSignUpClick} variant={"outline"} size={"lg"}>
-                        Sign Up
+                    <Button onClick={handleSignInClick} variant={"default"} size={"lg"} className="text-neutral-light">
+                        Masuk
                     </Button>
-                    <Button onClick={handleSignInClick} variant={"default"} size={"lg"} className="text-white">
-                        Sign In
+                    <Button onClick={handleSignUpClick} variant={"outline"} size={"lg"}>
+                        Daftar
                     </Button>
                 </section>
 

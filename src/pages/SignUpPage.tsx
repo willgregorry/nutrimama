@@ -22,39 +22,39 @@ export default function SignUpPage() {
     return (
         <>
             <Header />
-            <div className="flex flex-col lg:flex-row items-center justify-center bgc-gradient w-full min-h-screen pt-32 pb-16 px-4 lg:px-24">
+            <div className="flex flex-col justify-center items-center px-4 pt-32 pb-16 w-full min-h-screen lg:flex-row bgc-main lg:px-24">
 
-                <div className="flex-1 flex flex-col items-center lg:items-start justify-center gap-12 w-full max-w-xl">
+                <div className="flex flex-col flex-1 gap-12 justify-center items-center w-full max-w-xl lg:items-start">
                     <div className="relative w-[280px] sm:w-[380px] h-[280px] sm:h-[380px] mx-auto lg:ml-16">
                         <div className="absolute right-[-16px] top-[-16px] w-full h-full rounded-full border border-primary/40 -z-10" />
                         <div className="absolute right-[-32px] top-[-32px] w-full h-full rounded-full border border-primary/30 -z-10" />
                         <div className="absolute right-[-48px] top-[-48px] w-full h-full rounded-full border border-primary/20 -z-10" />
                         <div className="absolute right-[-64px] top-[-64px] w-full h-full rounded-full border border-primary/10 -z-10" />
 
-                        <div className="absolute inset-0 w-full h-full rounded-full overflow-hidden shadow-xl z-10 bg-white">
+                        <div className="overflow-hidden absolute inset-0 z-10 w-full h-full bg-white rounded-full shadow-xl">
                             <Image
                                 src="/hero.png"
                                 alt="Ibu Anak"
                                 width={600}
                                 height={600}
-                                className="w-full h-full object-cover"
+                                className="object-cover w-full h-full"
                             />
                         </div>
                     </div>
 
-                    <div className="text-center lg:text-left mx-auto lg:ml-12 mt-4">
-                        <h1 className="text-3xl sm:text-4xl font-bold text-primary tracking-tight">
+                    <div className="mx-auto mt-4 text-center lg:text-left lg:ml-12">
+                        <h1 className="text-3xl font-bold tracking-tight sm:text-4xl text-primary">
                             NutriMama
                         </h1>
-                        <p className="text-xl sm:text-2xl text-primary font-bold mt-1">
+                        <p className="mt-1 text-xl font-bold sm:text-2xl text-primary">
                             Fit Nutrition, Bright The Future
                         </p>
                     </div>
                 </div>
 
-                <div className="flex-1 flex items-center justify-center w-full mt-16 lg:mt-0">
+                <div className="flex flex-1 justify-center items-center mt-16 w-full lg:mt-0">
                     <div className="w-full max-w-[480px] bg-white rounded-[40px] shadow-xl p-10 sm:p-12 flex flex-col gap-4">
-                        <h2 className="text-3xl font-bold text-black mb-2">
+                        <h2 className="mb-2 text-3xl font-bold text-black">
                             Buat akun Anda
                         </h2>
 
@@ -112,14 +112,14 @@ export default function SignUpPage() {
                                 type="submit"
                                 disabled={isLoading}
                                 variant="default"
-                                className="w-full h-14 rounded-2xl mt-6 text-white text-lg font-semibold shadow-md transition-colors disabled:opacity-70"
+                                className="mt-6 w-full h-14 text-lg font-semibold text-white rounded-2xl shadow-md transition-colors disabled:opacity-70"
                             >
                                 {isLoading ? "Memproses..." : "Daftar"}
                             </Button>
                         </form>
 
                         <p className="text-[13px] text-center font-bold text-black mt-2">
-                            Sudah punya akun? <Link href="/sign-in" className="text-primary hover:text-primary-hover transition-colors">Masuk sekarang</Link>
+                            Sudah punya akun? <Link href="/auth/sign-in" className="transition-colors text-primary hover:text-primary-hover">Masuk sekarang</Link>
                         </p>
                     </div>
                 </div>
