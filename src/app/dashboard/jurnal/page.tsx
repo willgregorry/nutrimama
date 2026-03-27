@@ -1,12 +1,10 @@
+import JurnalPage from "@/components/features/jurnal/JurnalPage";
+
 export const metadata = {
-    title: "Jurnal - NutriMama",
-    description: "Jurnal NutriMama",
+    title: "Jurnal Keluarga Bahagia - NutriMama",
+    description: "Jurnal Keluarga Bahagia NutriMama",
 }
 
 export default function Jurnal() {
-    return (
-        <div>
-            <h1>Jurnal</h1>
-        </div>
-    )
+    return <JurnalPage />
 }

@@ -1,7 +1,7 @@
 import ArtikelDetailPage from "@/components/features/kitab_ibu/ArtikelDetailPage";
 
 export const metadata = {
-    title: "Membaca Artikel - NutriMama",
+    title: "Kitab Ibu - NutriMama",
     description: "Membaca artikel informatif di NutriMama",
 }
 

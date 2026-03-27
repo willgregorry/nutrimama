@@ -1,6 +1,6 @@
 export const metadata = {
-    title: "Jurnal - NutriMama",
-    description: "Jurnal NutriMama",
+    title: "Bimbingan Bidan - NutriMama",
+    description: "Bimbingan bidan NutriMama",
 }
 
 export default function BimbinganBidan() {
