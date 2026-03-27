@@ -9,49 +9,53 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useRouter } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
-import { useAuthStore } from "@/store/useAuthStore";
 
-const signInSchema = z.object({
+const forgotPasswordSchema = z.object({
     email: z.string().min(1, { message: "Email wajib diisi" }).email({ message: "Format email tidak valid" }),
-    password: z.string().min(8, { message: "Password minimal 8 karakter" })
+    password: z.string().min(8, { message: "Password minimal 8 karakter" }),
+    confirmPassword: z.string().min(8, { message: "Konfirmasi password wajib diisi" }),
+}).refine((data) => data.password === data.confirmPassword, {
+    message: "Password tidak cocok",
+    path: ["confirmPassword"],
 });
 
-type SignInFormValues = z.infer<typeof signInSchema>;
+type ForgotPasswordFormValues = z.infer<typeof forgotPasswordSchema>;
 
-export default function SignInPage() {
-
+export default function ForgotPasswordPage() {
     const router = useRouter();
-    const login = useAuthStore((state) => state.login);
 
     const {
         register,
         handleSubmit,
         formState: { errors }
-    } = useForm<SignInFormValues>({
-        resolver: zodResolver(signInSchema),
+    } = useForm<ForgotPasswordFormValues>({
+        resolver: zodResolver(forgotPasswordSchema),
         defaultValues: {
             email: "",
             password: "",
+            confirmPassword: "",
         }
     });
 
     const mutation = useMutation({
-        mutationFn: async (data: SignInFormValues) => {
+        mutationFn: async (data: ForgotPasswordFormValues) => {
             await new Promise(resolve => setTimeout(resolve, 1000));
-            return { name: data.email.split("@")[0] };
+            return data;
         },
-        onSuccess: (data) => {
-            login(data.name);
-            router.push("/dashboard");
+        onSuccess: () => {
+            router.push("/auth/sign-in");
         },
         onError: (error) => {
-            console.error("Login Failed:", error);
+            console.error("Reset Failed:", error);
         }
     });
 
-    const onSubmit = (data: SignInFormValues) => {
+    const onSubmit = (data: ForgotPasswordFormValues) => {
         mutation.mutate(data);
     };
+
+    const inputClass = (hasError: boolean) =>
+        `w-full border-b-[1.5px] py-3 bg-transparent outline-none focus:border-primary placeholder:text-gray-400 font-medium transition-colors ${hasError ? "border-red-500 text-red-500" : "border-gray-400 text-black"}`;
 
     return (
         <>
@@ -88,7 +92,7 @@ export default function SignInPage() {
 
                 <div className="flex flex-1 justify-center items-center mt-16 w-full lg:mt-0">
                     <div className="w-full max-w-[480px] bg-white rounded-[40px] shadow-xl p-10 sm:p-12 flex flex-col gap-4">
-                        <h2 className="mb-2 text-3xl font-bold text-black">Masuk ke akun Anda</h2>
+                        <h2 className="mb-2 text-3xl font-bold text-black">Reset Password</h2>
 
                         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
 
@@ -98,8 +102,7 @@ export default function SignInPage() {
                                     id="email"
                                     type="email"
                                     placeholder="Masukkan email Anda"
-                                    className={`w-full border-b-[1.5px] py-3 bg-transparent outline-none focus:border-primary placeholder:text-gray-400 font-medium transition-colors ${errors.email ? "border-red-500 text-red-500" : "border-gray-400 text-black"
-                                        }`}
+                                    className={inputClass(!!errors.email)}
                                     {...register("email")}
                                 />
                                 {errors.email && (
@@ -108,13 +111,12 @@ export default function SignInPage() {
                             </div>
 
                             <div className="flex flex-col gap-2 mt-2">
-                                <label className="text-sm font-semibold text-black" htmlFor="password">Password</label>
+                                <label className="text-sm font-semibold text-black" htmlFor="password">Password Baru</label>
                                 <input
                                     id="password"
                                     type="password"
                                     placeholder="Masukkan password Anda"
-                                    className={`w-full border-b-[1.5px] py-3 bg-transparent outline-none focus:border-primary placeholder:text-gray-400 font-medium transition-colors ${errors.password ? "border-red-500 text-red-500" : "border-gray-400 text-black"
-                                        }`}
+                                    className={inputClass(!!errors.password)}
                                     {...register("password")}
                                 />
                                 {errors.password && (
@@ -122,10 +124,18 @@ export default function SignInPage() {
                                 )}
                             </div>
 
-                            <div className="mt-1 w-full">
-                                <Link href="/auth/forgot-password" className="text-[13px] font-bold text-black underline underline-offset-2 hover:text-primary transition-colors">
-                                    Lupa password?
-                                </Link>
+                            <div className="flex flex-col gap-2 mt-2">
+                                <label className="text-sm font-semibold text-black" htmlFor="confirmPassword">Konfirmasi Password Baru</label>
+                                <input
+                                    id="confirmPassword"
+                                    type="password"
+                                    placeholder="Masukkan password Anda"
+                                    className={inputClass(!!errors.confirmPassword)}
+                                    {...register("confirmPassword")}
+                                />
+                                {errors.confirmPassword && (
+                                    <span className="mt-1 text-xs font-semibold text-red-500">{errors.confirmPassword.message}</span>
+                                )}
                             </div>
 
                             <Button
@@ -134,13 +144,9 @@ export default function SignInPage() {
                                 variant="default"
                                 className="mt-4 w-full h-14 text-lg font-semibold text-white rounded-2xl shadow-md transition-colors disabled:opacity-70"
                             >
-                                {mutation.isPending ? "Memproses..." : "Masuk"}
+                                {mutation.isPending ? "Memproses..." : "Reset"}
                             </Button>
                         </form>
-
-                        <p className="text-[13px] text-center font-bold text-black mt-2">
-                            Belum punya akun? <Link href="/auth/sign-up" className="transition-colors text-primary hover:text-primary-hover">Daftar sekarang</Link>
-                        </p>
                     </div>
                 </div>
 

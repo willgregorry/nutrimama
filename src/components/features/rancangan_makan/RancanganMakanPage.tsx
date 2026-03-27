@@ -5,10 +5,8 @@ import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, ArrowLeft, Loader2 } from "lucide-react"
 import { useRancanganMakan } from "@/hooks/useRancanganMakan"
-import { useRouter } from "next/navigation"
 
 export default function RancanganMakanPage() {
-    const router = useRouter()
     const [started, setStarted] = useState(false)
     const { data, isLoading, isError } = useRancanganMakan()
 
