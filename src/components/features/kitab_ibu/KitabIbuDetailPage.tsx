@@ -66,7 +66,7 @@ export default function KitabIbuDetailPage() {
                                 key={article.id}
                                 className="flex flex-col bg-white rounded-2xl overflow-hidden shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.08)] transition-all cursor-pointer border border-neutral-100 group"
                             >
-                                <div className="relative w-full aspect-[4/3] bg-neutral-100 overflow-hidden">
+                                <div className="relative w-full aspect-4/3 bg-neutral-100 overflow-hidden">
                                     <Image
                                         src={article.image}
                                         alt={article.title}

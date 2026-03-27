@@ -1,14 +1,16 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function NotFound() {
     return (
         <div className="min-h-screen flex flex-col items-center justify-center bg-primary-light px-6 text-center font-jakarta">
             <p
                 className="font-black text-primary leading-none"
-                style={{ fontSize: "clamp(6rem, 20vw, 12rem)" }}
+                style={{ fontSize: "clamp(4rem, 20vw, 6rem)" }}
             >
                 404
             </p>
+            <Image src="/not-found.png" alt="Not Found" width={300} height={300} />
 
             <h1
                 className="font-bold text-neutral-800 mt-2"
