@@ -2,57 +2,57 @@
   {
     "hari": "Senin",
     "menu": [
-      { "nama": "Nasi Ayam Salad", "gambar": "/rancangan-makan/nasi-ayam-salad.webp", "kalori": 450 },
-      { "nama": "Nasi Ayam Brokoli", "gambar": "/rancangan-makan/nasi-ayam-brokoli.webp", "kalori": 420 },
-      { "nama": "Nasi Daging Brokoli", "gambar": "/rancangan-makan/nasi-daging-brokoli.webp", "kalori": 480 }
+      { "nama": "Nasi Ayam Salad", "gambar": "/rancangan-makan/makanan.jpg" },
+      { "nama": "Nasi Ayam Brokoli", "gambar": "/rancangan-makan/makanan.jpg" },
+      { "nama": "Nasi Daging Brokoli", "gambar": "/rancangan-makan/makanan.jpg" }
     ]
   },
   {
     "hari": "Selasa",
     "menu": [
-      { "nama": "Nasi Telur Sayur", "gambar": "/rancangan-makan/nasi-ayam-salad.webp", "kalori": 380 },
-      { "nama": "Sup Ayam Wortel", "gambar": "/rancangan-makan/nasi-ayam-brokoli.webp", "kalori": 320 },
-      { "nama": "Nasi Ikan Steam", "gambar": "/rancangan-makan/nasi-daging-brokoli.webp", "kalori": 400 }
+      { "nama": "Nasi Telur Sayur", "gambar": "/rancangan-makan/makanan.jpg" },
+      { "nama": "Sup Ayam Wortel", "gambar": "/rancangan-makan/makanan.jpg" },
+      { "nama": "Nasi Ikan Steam", "gambar": "/rancangan-makan/makanan.jpg" }
     ]
   },
   {
     "hari": "Rabu",
     "menu": [
-      { "nama": "Bubur Ayam Sehat", "gambar": "/rancangan-makan/nasi-ayam-salad.webp", "kalori": 350 },
-      { "nama": "Nasi Tahu Tempe", "gambar": "/rancangan-makan/nasi-ayam-brokoli.webp", "kalori": 390 },
-      { "nama": "Sayur Bening Bayam", "gambar": "/rancangan-makan/nasi-daging-brokoli.webp", "kalori": 280 }
+      { "nama": "Bubur Ayam Sehat", "gambar": "/rancangan-makan/makanan.jpg" },
+      { "nama": "Nasi Tahu Tempe", "gambar": "/rancangan-makan/makanan.jpg" },
+      { "nama": "Sayur Bening Bayam", "gambar": "/rancangan-makan/makanan.jpg" }
     ]
   },
   {
     "hari": "Kamis",
     "menu": [
-      { "nama": "Nasi Salmon Panggang", "gambar": "/rancangan-makan/nasi-ayam-salad.webp", "kalori": 520 },
-      { "nama": "Gado-gado Sayur", "gambar": "/rancangan-makan/nasi-ayam-brokoli.webp", "kalori": 410 },
-      { "nama": "Nasi Ayam Kuah", "gambar": "/rancangan-makan/nasi-daging-brokoli.webp", "kalori": 445 }
+      { "nama": "Nasi Salmon Panggang", "gambar": "/rancangan-makan/makanan.jpg" },
+      { "nama": "Gado-gado Sayur", "gambar": "/rancangan-makan/makanan.jpg" },
+      { "nama": "Nasi Ayam Kuah", "gambar": "/rancangan-makan/makanan.jpg" }
     ]
   },
   {
     "hari": "Jumat",
     "menu": [
-      { "nama": "Nasi Pepes Ikan", "gambar": "/rancangan-makan/nasi-ayam-salad.webp", "kalori": 430 },
-      { "nama": "Orak-arik Sayur", "gambar": "/rancangan-makan/nasi-ayam-brokoli.webp", "kalori": 310 },
-      { "nama": "Nasi Ayam Panggang", "gambar": "/rancangan-makan/nasi-daging-brokoli.webp", "kalori": 490 }
+      { "nama": "Nasi Pepes Ikan", "gambar": "/rancangan-makan/makanan.jpg" },
+      { "nama": "Orak-arik Sayur", "gambar": "/rancangan-makan/makanan.jpg" },
+      { "nama": "Nasi Ayam Panggang", "gambar": "/rancangan-makan/makanan.jpg" }
     ]
   },
   {
     "hari": "Sabtu",
     "menu": [
-      { "nama": "Nasi Tuna Salad", "gambar": "/rancangan-makan/nasi-ayam-salad.webp", "kalori": 460 },
-      { "nama": "Sup Bola Daging", "gambar": "/rancangan-makan/nasi-ayam-brokoli.webp", "kalori": 370 },
-      { "nama": "Nasi Ayam Jahe", "gambar": "/rancangan-makan/nasi-daging-brokoli.webp", "kalori": 440 }
+      { "nama": "Nasi Tuna Salad", "gambar": "/rancangan-makan/makanan.jpg" },
+      { "nama": "Sup Bola Daging", "gambar": "/rancangan-makan/makanan.jpg" },
+      { "nama": "Nasi Ayam Jahe", "gambar": "/rancangan-makan/makanan.jpg" }
     ]
   },
   {
     "hari": "Minggu",
     "menu": [
-      { "nama": "Nasi Rendang Sehat", "gambar": "/rancangan-makan/nasi-ayam-salad.webp", "kalori": 510 },
-      { "nama": "Sayur Asem Segar", "gambar": "/rancangan-makan/nasi-ayam-brokoli.webp", "kalori": 290 },
-      { "nama": "Nasi Ikan Bakar", "gambar": "/rancangan-makan/nasi-daging-brokoli.webp", "kalori": 470 }
+      { "nama": "Nasi Rendang Sehat", "gambar": "/rancangan-makan/makanan.jpg" },
+      { "nama": "Sayur Asem Segar", "gambar": "/rancangan-makan/makanan.jpg" },
+      { "nama": "Nasi Ikan Bakar", "gambar": "/rancangan-makan/makanan.jpg" }
     ]
   }
 ]
