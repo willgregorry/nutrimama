@@ -4,19 +4,53 @@ import Header from "@/components/Header";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import { useRouter } from "next/navigation";
+import { useMutation } from "@tanstack/react-query";
+import { useAuthStore } from "@/store/useAuthStore";
 
-export default function SignUpPage() {
-    const [isLoading, setIsLoading] = useState(false);
+const signInSchema = z.object({
+    email: z.string().min(1, { message: "Email wajib diisi" }).email({ message: "Format email tidak valid" }),
+    password: z.string().min(8, { message: "Password minimal 8 karakter" })
+});
 
+type SignInFormValues = z.infer<typeof signInSchema>;
 
-    // Masih simulasi proses teken tombol daftar
-    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        setIsLoading(true);
-        setTimeout(() => {
-            setIsLoading(false);
-        }, 1000);
+export default function SignInPage() {
+
+    const router = useRouter();
+    const login = useAuthStore((state) => state.login);
+
+    const {
+        register,
+        handleSubmit,
+        formState: { errors }
+    } = useForm<SignInFormValues>({
+        resolver: zodResolver(signInSchema),
+        defaultValues: {
+            email: "",
+            password: "",
+        }
+    });
+
+    const mutation = useMutation({
+        mutationFn: async (data: SignInFormValues) => {
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            return { name: data.email.split("@")[0] };
+        },
+        onSuccess: (data) => {
+            login(data.name);
+            router.push("/dashboard");
+        },
+        onError: (error) => {
+            console.error("Login Failed:", error);
+        }
+    });
+
+    const onSubmit = (data: SignInFormValues) => {
+        mutation.mutate(data);
     };
 
     return (
@@ -54,34 +88,23 @@ export default function SignUpPage() {
 
                 <div className="flex flex-1 justify-center items-center mt-16 w-full lg:mt-0">
                     <div className="w-full max-w-[480px] bg-white rounded-[40px] shadow-xl p-10 sm:p-12 flex flex-col gap-4">
-                        <h2 className="mb-2 text-3xl font-bold text-black">
-                            Buat akun Anda
-                        </h2>
+                        <h2 className="mb-2 text-3xl font-bold text-black">Masuk ke akun Anda</h2>
 
-                        <form onSubmit={onSubmit} className="flex flex-col gap-4">
+                        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
 
                             <div className="flex flex-col gap-2">
                                 <label className="text-sm font-semibold text-black" htmlFor="email">Email</label>
                                 <input
                                     id="email"
                                     type="email"
-                                    name="email"
-                                    required
                                     placeholder="Masukkan email Anda"
-                                    className="w-full border-b-[1.5px] py-3 bg-transparent outline-none focus:border-primary placeholder:text-gray-400 font-medium transition-colors border-gray-400 text-black"
+                                    className={`w-full border-b-[1.5px] py-3 bg-transparent outline-none focus:border-primary placeholder:text-gray-400 font-medium transition-colors ${errors.email ? "border-red-500 text-red-500" : "border-gray-400 text-black"
+                                        }`}
+                                    {...register("email")}
                                 />
-                            </div>
-
-                            <div className="flex flex-col gap-2 mt-2">
-                                <label className="text-sm font-semibold text-black" htmlFor="username">Username</label>
-                                <input
-                                    id="username"
-                                    type="text"
-                                    name="username"
-                                    required
-                                    placeholder="Masukkan username Anda"
-                                    className="w-full border-b-[1.5px] py-3 bg-transparent outline-none focus:border-primary placeholder:text-gray-400 font-medium transition-colors border-gray-400 text-black"
-                                />
+                                {errors.email && (
+                                    <span className="mt-1 text-xs font-semibold text-red-500">{errors.email.message}</span>
+                                )}
                             </div>
 
                             <div className="flex flex-col gap-2 mt-2">
@@ -89,37 +112,34 @@ export default function SignUpPage() {
                                 <input
                                     id="password"
                                     type="password"
-                                    name="password"
-                                    required
                                     placeholder="Masukkan password Anda"
-                                    className="w-full border-b-[1.5px] py-3 bg-transparent outline-none focus:border-primary placeholder:text-gray-400 font-medium transition-colors border-gray-400 text-black"
+                                    className={`w-full border-b-[1.5px] py-3 bg-transparent outline-none focus:border-primary placeholder:text-gray-400 font-medium transition-colors ${errors.password ? "border-red-500 text-red-500" : "border-gray-400 text-black"
+                                        }`}
+                                    {...register("password")}
                                 />
+                                {errors.password && (
+                                    <span className="mt-1 text-xs font-semibold text-red-500">{errors.password.message}</span>
+                                )}
                             </div>
 
-                            <div className="flex flex-col gap-2 mt-2">
-                                <label className="text-sm font-semibold text-black" htmlFor="password">Konfirmasi Password</label>
-                                <input
-                                    id="password"
-                                    type="password"
-                                    name="password"
-                                    required
-                                    placeholder="Masukkan kembali password Anda"
-                                    className="w-full border-b-[1.5px] py-3 bg-transparent outline-none focus:border-primary placeholder:text-gray-400 font-medium transition-colors border-gray-400 text-black"
-                                />
+                            <div className="mt-1 w-full">
+                                <Link href="#" className="text-[13px] font-bold text-black underline underline-offset-2 hover:text-primary transition-colors">
+                                    Lupa password?
+                                </Link>
                             </div>
 
                             <Button
                                 type="submit"
-                                disabled={isLoading}
+                                disabled={mutation.isPending}
                                 variant="default"
-                                className="mt-6 w-full h-14 text-lg font-semibold text-white rounded-2xl shadow-md transition-colors disabled:opacity-70"
+                                className="mt-4 w-full h-14 text-lg font-semibold text-white rounded-2xl shadow-md transition-colors disabled:opacity-70"
                             >
-                                {isLoading ? "Memproses..." : "Daftar"}
+                                {mutation.isPending ? "Memproses..." : "Masuk"}
                             </Button>
                         </form>
 
                         <p className="text-[13px] text-center font-bold text-black mt-2">
-                            Sudah punya akun? <Link href="/auth/sign-in" className="transition-colors text-primary hover:text-primary-hover">Masuk sekarang</Link>
+                            Belum punya akun? <Link href="/auth/sign-up" className="transition-colors text-primary hover:text-primary-hover">Daftar sekarang</Link>
                         </p>
                     </div>
                 </div>

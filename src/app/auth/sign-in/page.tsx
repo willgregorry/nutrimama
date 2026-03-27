@@ -1,4 +1,4 @@
-import SignInPage from "@/pages/SignInPage";
+import SignInPage from "@/components/features/auth/SignInPage";
 
 export const metadata = {
     title: "Sign In - NutriMama",

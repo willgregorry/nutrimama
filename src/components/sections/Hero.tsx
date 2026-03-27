@@ -9,18 +9,18 @@ import Link from "next/link";
 
 export default function Hero() {
     return (
-        <section className="flex overflow-hidden relative justify-center items-center px-24 pt-24 w-full min-h-screen">
+        <section className="flex overflow-hidden relative justify-center items-center px-6 md:px-12 xl:px-24 pt-24 w-full min-h-screen">
             <div className="grid z-10 grid-cols-1 gap-16 items-center mx-auto mt-12 w-full max-w-7xl lg:grid-cols-2 lg:gap-8">
 
                 <motion.div
                     initial={{ opacity: 0, x: -30 }}
-                    animate={{ opacity: 1, x: 50 }}
+                    animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 1 }}
-                    className="flex flex-col items-center space-y-4 text-center lg:items-start lg:text-left lg:pr-12">
-                    <h1 className="pb-2 text-5xl font-bold tracking-tight sm:text-6xl text-primary">
+                    className="flex flex-col lg:pl-16 items-center space-y-4 text-center lg:items-start lg:text-left">
+                    <h1 className="pb-2 font-bold tracking-tight text-primary" style={{ fontSize: 'clamp(2.5rem, 6vw, 4rem)' }}>
                         NutriMama
                     </h1>
-                    <p className="text-xl sm:text-2xl text-black font-medium leading-relaxed max-w-[500px]">
+                    <p className="text-black font-medium leading-relaxed max-w-lg" style={{ fontSize: 'clamp(1rem, 2vw, 1.25rem)' }}>
                         NutriMama adalah website yang membantu ibu hamil dalam menjaga pemenuhan gizi selama masa kehamilan
                     </p>
                     <div className="pt-6">
@@ -38,16 +38,16 @@ export default function Hero() {
 
                 <motion.div
                     initial={{ opacity: 0, x: 80 }}
-                    animate={{ opacity: 1, x: 30 }}
+                    animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 1 }}
-                    className="relative flex justify-center lg:justify-end items-end w-full lg:h-[600px] mt-12 lg:mt-0 pb-12 pr-0 lg:pr-24">
+                    className="relative flex justify-center lg:justify-end items-end w-full lg:h-96 xl:h-[600px] mt-12 lg:mt-0 pb-12 pr-0 lg:pr-24">
 
-                    <div className="relative w-[280px] sm:w-[340px] h-[360px] sm:h-[460px]">
+                    <div className="relative w-64 sm:w-72 lg:w-80 h-80 sm:h-96 lg:h-[420px] xl:h-[480px]">
 
-                        <div className="absolute right-[-16px] top-[-16px] w-full h-full rounded-t-full border-t border-r border-l border-primary/40 -z-10" />
-                        <div className="absolute right-[-32px] top-[-32px] w-full h-full rounded-t-full border-t border-r border-l border-primary/30 -z-10" />
-                        <div className="absolute right-[-48px] top-[-48px] w-full h-full rounded-t-full border-t border-r border-l border-primary/20 -z-10" />
-                        <div className="absolute right-[-64px] top-[-64px] w-full h-full rounded-t-full border-t border-r border-l border-primary/10 -z-10" />
+                        <div className="absolute -right-4 -top-4 w-full h-full rounded-t-full border-t border-r border-l border-primary/40 -z-10" />
+                        <div className="absolute -right-8 -top-8 w-full h-full rounded-t-full border-t border-r border-l border-primary/30 -z-10" />
+                        <div className="absolute -right-12 -top-12 w-full h-full rounded-t-full border-t border-r border-l border-primary/20 -z-10" />
+                        <div className="absolute -right-16 -top-16 w-full h-full rounded-t-full border-t border-r border-l border-primary/10 -z-10" />
 
                         <div
                             className="overflow-hidden absolute inset-0 z-10 w-full h-full bg-white rounded-t-full shadow-2xl"

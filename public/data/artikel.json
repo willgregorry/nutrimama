@@ -1,0 +1,58 @@
+[
+    {
+        "id": "1",
+        "title": "Trisemester 1: Masa persiapan bagi ibu hamil",
+        "image": "/kitab-ibu/masa-kehamilan.webp",
+        "content": "Masa krusial persiapan fisik dan mental ibu hamil, ditandai perubahan hormon, morning sickness, serta pembentukan organ vital janin. Persiapan utama meliputi pemeriksaan dokter, konsumsi asam folat, nutrisi gizi seimbang, istirahat cukup, serta menghindari rokok, alkohol, dan aktivitas berat.",
+        "kategori": "masa-kehamilan"
+    },
+    {
+        "id": "2",
+        "title": "Fase penting bagi ibu hamil dan janin di Trisemester 1",
+        "image": "/kitab-ibu/pasca-kelahiran.webp",
+        "content": "Trimester pertama adalah masa krusial dimana organ-organ vital janin mulai terbentuk. Ibu hamil perlu sangat berhati-hati dengan asupan gizi dan gaya hidup untuk mencegah berbagai macam risiko pada awal kehamilan.",
+        "kategori": "masa-kehamilan"
+    },
+    {
+        "id": "3",
+        "title": "Trisemester 2: Perubahan psikis dan fisik pada ibu hamil",
+        "image": "/kitab-ibu/masa-kehamilan.webp",
+        "content": "Memasuki trimester kedua, ibu hamil biasanya merasa lebih nyaman karena morning sickness sudah mulai berkurang. Namun, perubahan fisik akan semakin terlihat dengan perut yang mulai membesar dan pergerakan janin yang mulai terasa.",
+        "kategori": "masa-kehamilan"
+    },
+    {
+        "id": "4",
+        "title": "Apa saja tips hamil sehat selama masa Trisemester 2?",
+        "image": "/kitab-ibu/pasca-kelahiran.webp",
+        "content": "Tips sehat selama trimester kedua meliputi menjaga asupan kalsium untuk pertumbuhan tulang janin, memakai pakaian yang nyaman, mulai mengikuti senam hamil, dan tetap memenuhi kebutuhan cairan agar terhindar dari dehidrasi.",
+        "kategori": "masa-kehamilan"
+    },
+    {
+        "id": "5",
+        "title": "Trisemester 3: Persiapan ibu hamil untuk melahirkan",
+        "image": "/kitab-ibu/masa-kehamilan.webp",
+        "content": "Pada trimester ketiga, persiapan mental dan fisik untuk menghadapi persalinan sangat ditekankan. Mengikuti kelas laktasi, mempersiapkan barang bawaan persalinan, dan senam hamil intensif sangat direkomendasikan.",
+        "kategori": "masa-kehamilan"
+    },
+    {
+        "id": "6",
+        "title": "Cara menjaga kesehatan janin sebelum persalinan",
+        "image": "/kitab-ibu/pasca-kelahiran.webp",
+        "content": "Menjelang persalinan, ibu harus memantau pergerakan janin secara rutin, memenuhi nutrisi, dan tidak kelelahan. Konsultasi rutin ke dokter atau bidan sangat penting untuk mengetahui posisi janin dan merencanakan metode persalinan.",
+        "kategori": "masa-kehamilan"
+    },
+    {
+        "id": "7",
+        "title": "Pemulihan Fisik Pasca Melahirkan",
+        "image": "/kitab-ibu/pasca-kelahiran.webp",
+        "content": "Masa nifas adalah periode pemulihan yang sangat penting bagi ibu setelah berjuang saat persalinan. Istirahat yang cukup, asupan nutrisi protein tinggi, dan perawatan luka persalinan adalah fokus utama di fase ini.",
+        "kategori": "pasca-kelahiran"
+    },
+    {
+        "id": "8",
+        "title": "Menjaga Kesehatan Mental Pasca Melahirkan",
+        "image": "/kitab-ibu/masa-kehamilan.webp",
+        "content": "Perubahan hormon yang drastis pasca melahirkan sering kali memicu baby blues atau depresi postpartum. Dukungan suami, keluarga, serta waktu istirahat sangat penting untuk menjaga kesehatan psikis ibu.",
+        "kategori": "pasca-kelahiran"
+    }
+]

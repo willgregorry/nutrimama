@@ -7,7 +7,7 @@ import Link from "next/link";
 
 export default function AboutCTA() {
     return (
-        <section className="relative flex justify-center items-center w-full min-h-[450px] bg-[url('/landing_page/aboutcta.webp')] bg-cover bg-center bg-no-repeat overflow-hidden">
+        <section className="relative flex justify-center items-center w-full min-h-96 bg-[url('/landing_page/aboutcta.webp')] bg-cover bg-center bg-no-repeat overflow-hidden">
             <div className="absolute inset-0 bg-primary/20"></div>
             <div className="absolute inset-0 bg-black/50"></div>
 
@@ -22,25 +22,27 @@ export default function AboutCTA() {
                         transition: { staggerChildren: 0.2 }
                     }
                 }}
-                className="flex relative z-10 flex-col gap-8 items-center px-8 py-24 mx-auto max-w-4xl text-center text-white md:px-12"
+                className="flex relative z-10 flex-col gap-8 items-center px-6 py-24 mx-auto max-w-4xl text-center text-white md:px-12"
             >
-                <motion.h1
+                <motion.h2
                     variants={{
                         hidden: { opacity: 0, y: 20 },
                         visible: { opacity: 1, y: 0 }
                     }}
                     transition={{ duration: 0.6 }}
-                    className="text-4xl font-bold drop-shadow-lg md:text-6xl"
+                    className="font-bold drop-shadow-lg"
+                    style={{ fontSize: 'clamp(2rem, 5vw, 3.75rem)' }}
                 >
                     NutriMama
-                </motion.h1>
+                </motion.h2>
                 <motion.p
                     variants={{
                         hidden: { opacity: 0, scale: 0.95 },
                         visible: { opacity: 1, scale: 1 }
                     }}
                     transition={{ duration: 0.6 }}
-                    className="text-lg font-medium leading-relaxed drop-shadow-md md:text-xl text-white/95"
+                    className="font-medium leading-relaxed drop-shadow-md text-white/95"
+                    style={{ fontSize: 'clamp(1rem, 2vw, 1.25rem)' }}
                 >
                     NutriMama adalah platform terpadu yang membantu ibu hamil memantau dan memenuhi kebutuhan gizi secara optimal.
                     Melalui fitur-fitur edukasi dan penyesuaian kalori yang akurat, calon ibu tak perlu lagi cemas soal gizi.

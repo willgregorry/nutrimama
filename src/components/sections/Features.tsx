@@ -91,7 +91,7 @@ function FeaturesNextButton() {
     return (
         <button
             type="button"
-            className="hidden lg:flex absolute right-0 sm:right-4 top-1/2 -translate-y-1/2 border-2 border-primary text-neutral hover:bg-primary-p5 hover:text-neutral transition-colors h-14 w-14 shrink-0 shadow-sm z-50 items-center justify-center rounded-full bg-primary cursor-pointer pointer-events-auto"
+            className="hidden lg:flex absolute right-0 top-1/2 -translate-y-1/2 border-2 border-primary text-neutral hover:bg-primary-p5 hover:text-neutral transition-colors h-14 w-14 shrink-0 shadow-sm z-50 items-center justify-center rounded-full bg-primary cursor-pointer pointer-events-auto"
             onClick={() => {
                 api?.scrollNext()
             }}
@@ -104,9 +104,9 @@ function FeaturesNextButton() {
 
 export default function Features() {
     return (
-        <section id="features" className="flex overflow-hidden relative flex-col justify-center items-center px-4 py-24 w-full min-h-screen scroll-mt-24">
+        <section id="features" className="flex overflow-hidden relative flex-col justify-center items-center px-6 md:px-12 xl:px-24 py-24 w-full min-h-screen scroll-mt-24">
             <div className="flex flex-col gap-12 w-full max-w-6xl">
-                {/* Header */}
+
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -114,13 +114,12 @@ export default function Features() {
                     transition={{ duration: 0.6 }}
                     className="flex items-center gap-6 w-full"
                 >
-                    <h2 className="text-3xl font-bold text-black">
+                    <h2 className="font-bold text-black whitespace-nowrap" style={{ fontSize: 'clamp(1.5rem, 3vw, 2rem)' }}>
                         Fitur
                     </h2>
                     <div className="flex-1 border-t border-black"></div>
                 </motion.div>
 
-                {/* Big Carousel Card */}
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -132,10 +131,9 @@ export default function Features() {
                         <CarouselContent>
                             {featuresData.map((feature, idx) => (
                                 <CarouselItem key={idx}>
-                                    <div className="flex flex-col lg:flex-row gap-12 items-center lg:items-center">
+                                    <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-center">
 
-                                        {/* Gambar*/}
-                                        <div className="relative w-full lg:w-96 h-96 sm:h-[400px] lg:rounded-l-2xl overflow-hidden shadow-sm shrink-0">
+                                        <div className="relative w-full lg:w-96 h-64 sm:h-80 lg:h-96 rounded-2xl overflow-hidden shadow-sm shrink-0">
                                             <Image
                                                 src={feature.img}
                                                 alt={feature.title}
@@ -144,17 +142,16 @@ export default function Features() {
                                             />
                                         </div>
 
-                                        {/* Deskripsi fitur */}
-                                        <div className="flex flex-col gap-8 flex-1 relative pr-0 lg:pr-20 w-full">
-                                            <h3 className="text-4xl font-bold text-primary">
+                                        <div className="flex flex-col gap-6 flex-1 relative pr-0 lg:pr-20 w-full">
+                                            <h3 className="font-bold text-primary" style={{ fontSize: 'clamp(1.75rem, 3.5vw, 2.5rem)' }}>
                                                 {feature.title}
                                             </h3>
 
-                                            <p className="text-black font-medium text-lg leading-relaxed max-w-xl">
+                                            <p className="text-black font-medium leading-relaxed max-w-xl" style={{ fontSize: 'clamp(1rem, 1.5vw, 1.125rem)' }}>
                                                 {feature.desc}
                                             </p>
 
-                                            <div className="pt-4">
+                                            <div className="pt-2">
                                                 <Button variant="default" className="px-8 py-5 flex items-center gap-2">
                                                     Learn More <ArrowRight className="w-4 h-4 ml-1" />
                                                 </Button>
@@ -166,14 +163,12 @@ export default function Features() {
                             ))}
                         </CarouselContent>
 
-                        {/* Navigation Dots */}
                         <div className="mt-8 flex justify-center lg:justify-start">
                             <div className="w-full lg:w-96 flex justify-start z-50">
                                 <FeaturesDots />
                             </div>
                         </div>
 
-                        {/* Custom Next Button */}
                         <FeaturesNextButton />
                     </Carousel>
                 </motion.div>

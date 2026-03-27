@@ -5,7 +5,7 @@ import { motion } from "motion/react"
 
 export default function About() {
     return (
-        <section id="about" className="flex overflow-hidden relative justify-center items-center px-4 py-24 w-full min-h-screen scroll-mt-24">
+        <section id="about" className="flex overflow-hidden relative justify-center items-center px-6 md:px-12 xl:px-24 py-24 w-full min-h-screen scroll-mt-24">
             <motion.div
                 initial={{ opacity: 0, scale: 0.95, y: 30 }}
                 whileInView={{ opacity: 1, scale: 1, y: 0 }}
@@ -29,7 +29,8 @@ export default function About() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6, delay: 0.4 }}
-                        className="text-3xl font-bold leading-tight"
+                        className="font-bold leading-tight"
+                        style={{ fontSize: 'clamp(1.5rem, 3vw, 2rem)' }}
                     >
                         Ibu hamil beresiko 4X lipat melahirkan bayi dengan gangguan pertumbuhan
                     </motion.h2>
@@ -45,7 +46,8 @@ export default function About() {
                         whileInView={{ opacity: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6, delay: 0.7 }}
-                        className="text-lg lg:text-xl font-medium text-left text-black leading-relaxed"
+                        className="font-medium text-left text-black leading-relaxed"
+                        style={{ fontSize: 'clamp(1rem, 1.5vw, 1.25rem)' }}
                     >
                         Malnutrisi yang terjadi pada ibu hamil dapat menjadi faktor kegagalan
                         dalam optimalisasi masa 1000 Hari Pertama Kehidupan (HPK). Hal ini
