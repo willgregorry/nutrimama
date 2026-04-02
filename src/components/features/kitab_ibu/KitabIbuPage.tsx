@@ -6,13 +6,13 @@ export default function KitabIbuPage() {
     return (
         <div className="flex flex-col gap-8 px-2 sm:px-4 items-center justify-center w-full h-full">
             <h1
-                className="font-bold text-primary self-start"
+                className="font-bold text-primary text-center w-full"
                 style={{ fontSize: "clamp(1.5rem, 3vw, 2rem)" }}
             >
                 Kitab Ibu
             </h1>
 
-            <div className="flex flex-col gap-10 sm:gap-16 w-full h-full lg:flex-row">
+            <div className="flex flex-col gap-10 sm:gap-16 w-full h-full mb-12 lg:mb-0 lg:flex-row">
                 <Link
                     href="/dashboard/kitab-ibu/masa-kehamilan"
                     className="flex flex-col items-center justify-center w-full h-full lg:w-1/2 group cursor-pointer transition-transform"

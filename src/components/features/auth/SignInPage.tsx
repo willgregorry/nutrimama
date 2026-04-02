@@ -10,6 +10,9 @@ import * as z from "zod";
 import { useRouter } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
 import { useAuthStore } from "@/store/useAuthStore";
+import axios from "axios";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
 
 const signInSchema = z.object({
     email: z.string().min(1, { message: "Email wajib diisi" }).email({ message: "Format email tidak valid" }),
@@ -23,11 +26,7 @@ export default function SignInPage() {
     const router = useRouter();
     const login = useAuthStore((state) => state.login);
 
-    const {
-        register,
-        handleSubmit,
-        formState: { errors }
-    } = useForm<SignInFormValues>({
+    const form = useForm<SignInFormValues>({
         resolver: zodResolver(signInSchema),
         defaultValues: {
             email: "",
@@ -37,11 +36,11 @@ export default function SignInPage() {
 
     const mutation = useMutation({
         mutationFn: async (data: SignInFormValues) => {
-            await new Promise(resolve => setTimeout(resolve, 1000));
-            return { name: data.email.split("@")[0] };
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`, data);
+            return response.data;
         },
         onSuccess: (data) => {
-            login(data.name);
+            login(data?.user?.username || data?.user?.name || form.getValues().email.split("@")[0]);
             router.push("/dashboard");
         },
         onError: (error) => {
@@ -58,7 +57,7 @@ export default function SignInPage() {
             <Header />
             <div className="flex flex-col justify-center items-center px-4 pt-32 pb-16 w-full min-h-screen lg:flex-row bgc-main lg:px-24">
 
-                <div className="flex flex-col flex-1 gap-12 justify-center items-center w-full max-w-xl lg:items-start">
+                <div className="hidden lg:flex flex-col flex-1 gap-12 justify-center items-center w-full max-w-xl lg:items-start">
                     <div className="relative w-[280px] sm:w-[380px] h-[280px] sm:h-[380px] mx-auto lg:ml-16">
                         <div className="absolute right-[-16px] top-[-16px] w-full h-full rounded-full border border-primary/40 -z-10" />
                         <div className="absolute right-[-32px] top-[-32px] w-full h-full rounded-full border border-primary/30 -z-10" />
@@ -90,53 +89,62 @@ export default function SignInPage() {
                     <div className="w-full max-w-[480px] bg-white rounded-[40px] shadow-xl p-10 sm:p-12 flex flex-col gap-4">
                         <h2 className="mb-2 text-3xl font-bold text-black">Masuk ke akun Anda</h2>
 
-                        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
-
-                            <div className="flex flex-col gap-2">
-                                <label className="text-sm font-semibold text-black" htmlFor="email">Email</label>
-                                <input
-                                    id="email"
-                                    type="email"
-                                    placeholder="Masukkan email Anda"
-                                    className={`w-full border-b-[1.5px] py-3 bg-transparent outline-none focus:border-primary placeholder:text-gray-400 font-medium transition-colors ${errors.email ? "border-red-500 text-red-500" : "border-gray-400 text-black"
-                                        }`}
-                                    {...register("email")}
+                        <Form {...form}>
+                            <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-4">
+                                <FormField
+                                    control={form.control}
+                                    name="email"
+                                    render={({ field }) => (
+                                        <FormItem className="flex flex-col gap-2">
+                                            <FormLabel className="text-sm font-semibold text-black">Email</FormLabel>
+                                            <FormControl>
+                                                <Input
+                                                    type="email"
+                                                    placeholder="Masukkan email Anda"
+                                                    className={`w-full border-0 border-b-[1.5px] rounded-none px-0 py-3 bg-transparent outline-none focus-visible:ring-0 focus:border-primary shadow-none placeholder:text-gray-400 font-medium transition-colors ${form.formState.errors.email ? "border-red-500 text-red-500" : "border-gray-400 text-black"}`}
+                                                    {...field}
+                                                />
+                                            </FormControl>
+                                            <FormMessage className="mt-1 text-xs font-semibold text-red-500" />
+                                        </FormItem>
+                                    )}
                                 />
-                                {errors.email && (
-                                    <span className="mt-1 text-xs font-semibold text-red-500">{errors.email.message}</span>
-                                )}
-                            </div>
 
-                            <div className="flex flex-col gap-2 mt-2">
-                                <label className="text-sm font-semibold text-black" htmlFor="password">Password</label>
-                                <input
-                                    id="password"
-                                    type="password"
-                                    placeholder="Masukkan password Anda"
-                                    className={`w-full border-b-[1.5px] py-3 bg-transparent outline-none focus:border-primary placeholder:text-gray-400 font-medium transition-colors ${errors.password ? "border-red-500 text-red-500" : "border-gray-400 text-black"
-                                        }`}
-                                    {...register("password")}
+                                <FormField
+                                    control={form.control}
+                                    name="password"
+                                    render={({ field }) => (
+                                        <FormItem className="flex flex-col gap-2 mt-2">
+                                            <FormLabel className="text-sm font-semibold text-black">Password</FormLabel>
+                                            <FormControl>
+                                                <Input
+                                                    type="password"
+                                                    placeholder="Masukkan password Anda"
+                                                    className={`w-full border-0 border-b-[1.5px] rounded-none px-0 py-3 bg-transparent outline-none focus-visible:ring-0 focus:border-primary shadow-none placeholder:text-gray-400 font-medium transition-colors ${form.formState.errors.password ? "border-red-500 text-red-500" : "border-gray-400 text-black"}`}
+                                                    {...field}
+                                                />
+                                            </FormControl>
+                                            <FormMessage className="mt-1 text-xs font-semibold text-red-500" />
+                                        </FormItem>
+                                    )}
                                 />
-                                {errors.password && (
-                                    <span className="mt-1 text-xs font-semibold text-red-500">{errors.password.message}</span>
-                                )}
-                            </div>
 
-                            <div className="mt-1 w-full">
-                                <Link href="/auth/forgot-password" className="text-[13px] font-bold text-black underline underline-offset-2 hover:text-primary transition-colors">
-                                    Lupa password?
-                                </Link>
-                            </div>
+                                <div className="mt-1 w-full">
+                                    <Link href="/auth/forgot-password" className="text-[13px] font-bold text-black underline underline-offset-2 hover:text-primary transition-colors">
+                                        Lupa password?
+                                    </Link>
+                                </div>
 
-                            <Button
-                                type="submit"
-                                disabled={mutation.isPending}
-                                variant="default"
-                                className="mt-4 w-full h-14 text-lg font-semibold text-white rounded-2xl shadow-md transition-colors disabled:opacity-70"
-                            >
-                                {mutation.isPending ? "Memproses..." : "Masuk"}
-                            </Button>
-                        </form>
+                                <Button
+                                    type="submit"
+                                    disabled={mutation.isPending}
+                                    variant="default"
+                                    className="mt-4 w-full h-14 text-lg font-semibold text-white rounded-2xl shadow-md transition-colors disabled:opacity-70"
+                                >
+                                    {mutation.isPending ? "Memproses..." : "Masuk"}
+                                </Button>
+                            </form>
+                        </Form>
 
                         <p className="text-[13px] text-center font-bold text-black mt-2">
                             Belum punya akun? <Link href="/auth/sign-up" className="transition-colors text-primary hover:text-primary-hover">Daftar sekarang</Link>

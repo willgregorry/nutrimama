@@ -15,13 +15,14 @@ import {
 } from "@/components/ui/dropdown-menu"
 
 import { Button } from "./ui/button";
-import { usePathname, redirect } from "next/navigation";
-import { Menu, X, User, ChevronDown, ChevronUp, LayoutDashboard } from "lucide-react";
+import { usePathname, redirect, useRouter } from "next/navigation";
+import { Menu, X, User, ChevronDown, ChevronUp, LayoutDashboard, LogOut } from "lucide-react";
 import { useAuthStore } from "@/store/useAuthStore";
 
 export default function Header() {
-    const { isLoggedIn, user } = useAuthStore();
+    const { isLoggedIn, user, logout } = useAuthStore();
     const pathname = usePathname();
+    const router = useRouter();
     const isDashboard = pathname?.startsWith("/dashboard");
     const [scrolled, setScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -100,6 +101,12 @@ export default function Header() {
                                             <LayoutDashboard className="w-5 h-5 mr-0.5" />
                                         </Link>
                                     </DropdownMenuItem>
+                                    <DropdownMenuItem asChild className="focus:bg-white/20 focus:text-white cursor-pointer rounded-lg px-3 py-2">
+                                        <button onClick={() => { logout(); router.push("/"); }} className="flex items-center justify-between w-full text-red-100 hover:text-white focus:text-white transition-colors">
+                                            <span className="font-medium text-base ml-1">Keluar</span>
+                                            <LogOut className="w-5 h-5 mr-0.5" />
+                                        </button>
+                                    </DropdownMenuItem>
                                 </div>
                             </DropdownMenuContent>
                         </DropdownMenu>
@@ -132,11 +139,21 @@ export default function Header() {
                     </nav>
                     <div className="flex flex-col gap-4 pt-4 w-full border-t border-primary-light">
                         {isLoggedIn ? (
-                            <div className="flex items-center justify-center gap-3 bg-primary text-white rounded-full px-6 py-4 cursor-pointer hover:bg-primary-p6 transition-colors shadow-md w-full">
-                                <span className="font-semibold text-base py-0.5">{user?.name}</span>
-                                <User className="w-5 h-5 ml-2" />
+                            <div className="flex flex-col gap-3">
+                                <div className="flex items-center justify-center gap-3 bg-primary text-white rounded-full px-6 py-4 shadow-md w-full">
+                                    <span className="font-semibold text-base py-0.5">{user?.name}</span>
+                                    <User className="w-5 h-5 ml-2" />
+                                </div>
+                                <Button onClick={() => { router.push("/profile"); setIsMobileMenuOpen(false); }} variant={"outline"} className="w-full h-12">
+                                    Profile
+                                </Button>
+                                <Button onClick={() => { router.push("/dashboard"); setIsMobileMenuOpen(false); }} variant={"outline"} className="w-full h-12 border-primary text-primary hover:bg-primary/10">
+                                    Dashboard
+                                </Button>
+                                <Button onClick={() => { logout(); router.push("/"); setIsMobileMenuOpen(false); }} variant={"destructive"} className="w-full h-12 border-red-500 bg-red-50 text-red-500 hover:bg-red-100 dark:bg-red-950 dark:hover:bg-red-900 border">
+                                    Keluar
+                                </Button>
                             </div>
-
                         ) : (
                             <>
                                 <Button onClick={handleSignUpClick} variant={"outline"} className="w-full h-12">

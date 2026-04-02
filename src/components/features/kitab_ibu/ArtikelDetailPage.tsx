@@ -52,7 +52,7 @@ export default function ArtikelDetailPage() {
     }
 
     return (
-        <div className="flex flex-col gap-6 sm:gap-8 w-full h-fit animate-in fade-in duration-300 p-5 sm:p-8 md:p-12 bg-neutral-50/50 rounded-[32px] max-w-5xl mx-auto shadow-sm border border-white pb-20 lg:pb-12">
+        <div className="flex flex-col gap-6 sm:gap-8 w-full h-fit animate-in fade-in duration-300 p-5 sm:p-8 md:p-12 rounded-[32px] max-w-5xl mx-auto border border-white pb-20 lg:pb-12">
 
             <div className="flex items-center gap-4 w-full">
                 <button

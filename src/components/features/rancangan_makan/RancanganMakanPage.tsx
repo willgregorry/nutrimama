@@ -12,7 +12,7 @@ export default function RancanganMakanPage() {
 
     if (!started) {
         return (
-            <div className="flex w-full h-full items-center justify-center">
+            <div className="flex w-full h-full mb-12 lg:mb-0 items-center justify-center">
                 <div className="flex flex-col gap-8 items-center justify-center w-full h-full max-w-xl text-center">
                     <h1 className="text-3xl font-bold text-primary">Rancangan Makan</h1>
 

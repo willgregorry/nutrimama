@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function NotFound() {
     return (
-        <div className="min-h-screen flex flex-col items-center justify-center bg-primary-light px-6 text-center font-jakarta">
+        <div className="min-h-screen flex flex-col items-center justify-center px-6 text-center font-jakarta">
             <p
                 className="font-black text-primary leading-none"
                 style={{ fontSize: "clamp(4rem, 20vw, 6rem)" }}
