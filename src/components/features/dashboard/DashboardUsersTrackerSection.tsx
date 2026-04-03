@@ -33,7 +33,7 @@ export default function DashboardUsersTrackerSection() {
                 </h3>
 
                 <div className="flex justify-center mt-2">
-                    <Link href="/dashboard/users-tracker">
+                    <Link href="/dashboard/profile">
                         <Button
                             variant="default"
                             className="bg-primary hover:bg-primary/95 text-white rounded-[20px] px-12 py-7 font-semibold flex items-center gap-2 text-xl shadow-md transition-all hover:scale-105 active:scale-95 group"
