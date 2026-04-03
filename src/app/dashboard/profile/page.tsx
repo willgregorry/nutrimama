@@ -1,12 +1,10 @@
+import ProfilePage from "@/components/features/profile/ProfilePage"
+
 export const metadata = {
-    title: "Profile - NutriMama",
-    description: "Perancangan rencana makan mingguan",
+    title: "User Tracking - NutriMama",
+    description: "Pantau perkembangan kehamilan Anda",
 }
 
-export default function RancanganMakan() {
-    return (
-        <>
-            <h1>Halaman profile</h1>
-        </>
-    )
+export default function Profile() {
+    return <ProfilePage />
 }

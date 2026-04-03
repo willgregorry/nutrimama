@@ -144,7 +144,7 @@ export default function Header() {
                                     <span className="font-semibold text-base py-0.5">{user?.name}</span>
                                     <User className="w-5 h-5 ml-2" />
                                 </div>
-                                <Button onClick={() => { router.push("/profile"); setIsMobileMenuOpen(false); }} variant={"outline"} className="w-full h-12">
+                                <Button onClick={() => { router.push("/dashboard/profile"); setIsMobileMenuOpen(false); }} variant={"outline"} className="w-full h-12">
                                     Profile
                                 </Button>
                                 <Button onClick={() => { router.push("/dashboard"); setIsMobileMenuOpen(false); }} variant={"outline"} className="w-full h-12 border-primary text-primary hover:bg-primary/10">
