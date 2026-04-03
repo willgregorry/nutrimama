@@ -11,19 +11,19 @@ import { useRouter } from "next/navigation"
 
 const harianSchema = z.object({
   proteinHewani: z.enum(["Terpenuhi", "Tidak Terpenuhi"], {
-    errorMap: () => ({ message: "Pilih salah satu opsi" }),
+    message: "Pilih salah satu opsi",
   }),
   airPutih: z.enum(["Terpenuhi", "Tidak Terpenuhi"], {
-    errorMap: () => ({ message: "Pilih salah satu opsi" }),
+    message: "Pilih salah satu opsi",
   }),
   tabletTambahDarah: z.enum(["Terpenuhi", "Tidak Terpenuhi"], {
-    errorMap: () => ({ message: "Pilih salah satu opsi" }),
+    message: "Pilih salah satu opsi",
   }),
   asamFolat: z.enum(["Terpenuhi", "Tidak Terpenuhi"], {
-    errorMap: () => ({ message: "Pilih salah satu opsi" }),
+    message: "Pilih salah satu opsi",
   }),
   mualLemas: z.enum(["Iya", "Tidak"], {
-    errorMap: () => ({ message: "Pilih salah satu opsi" }),
+    message: "Pilih salah satu opsi",
   })
 })
 

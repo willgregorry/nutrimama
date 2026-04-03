@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { Loader2 } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -142,9 +143,9 @@ export default function ForgotPasswordPage() {
                                 type="submit"
                                 disabled={mutation.isPending}
                                 variant="default"
-                                className="mt-4 w-full h-14 text-lg font-semibold text-white rounded-2xl shadow-md transition-colors disabled:opacity-70"
+                                className="mt-4 w-full h-14 text-lg font-semibold text-white rounded-2xl shadow-md transition-colors disabled:opacity-70 flex items-center justify-center"
                             >
-                                {mutation.isPending ? "Memproses..." : "Reset"}
+                                {mutation.isPending ? <Loader2 className="w-6 h-6 animate-spin" /> : "Reset"}
                             </Button>
                         </form>
                     </div>
