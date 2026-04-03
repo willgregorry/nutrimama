@@ -74,6 +74,7 @@ export default function ArtikelDetailPage() {
                         src={imgUrl}
                         alt={article.title}
                         fill
+                        unoptimized
                         sizes="(max-width: 640px) 90vw, 500px"
                         className="object-cover"
                     />

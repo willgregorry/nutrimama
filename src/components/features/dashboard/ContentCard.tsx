@@ -8,6 +8,7 @@ export default function ContentCard({ img, title, subtitle }: { img: string; tit
                     src={img}
                     alt={title}
                     fill
+                    unoptimized
                     sizes="(max-width: 640px) 220px, (max-width: 768px) 260px, 280px"
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />
