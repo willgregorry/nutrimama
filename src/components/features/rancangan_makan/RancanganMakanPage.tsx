@@ -4,11 +4,28 @@ import { useState } from "react"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, ArrowLeft, Loader2 } from "lucide-react"
-import { useRancanganMakan } from "@/hooks/useRancanganMakan"
+import { useMealPlanGenerate, MealPlanItem } from "@/hooks/useMealPlan"
+
+const baseUrl = process.env.NEXT_PUBLIC_API_URL?.replace("/api", "") || ""
+
+function getImageUrl(foodImage: string) {
+    if (!foodImage) return "/rancangan-makan/rancang.webp"
+    if (foodImage.startsWith("http")) return foodImage
+    return `${baseUrl}${foodImage}`
+}
+
+function formatTime(time: string) {
+    return time?.slice(0, 5) || ""
+}
 
 export default function RancanganMakanPage() {
     const [started, setStarted] = useState(false)
-    const { data, isLoading, isError } = useRancanganMakan()
+    const { mutate, data, isPending, isError } = useMealPlanGenerate()
+
+    const handleGenerate = () => {
+        setStarted(true)
+        mutate()
+    }
 
     if (!started) {
         return (
@@ -30,7 +47,7 @@ export default function RancanganMakanPage() {
                     </p>
 
                     <Button
-                        onClick={() => setStarted(true)}
+                        onClick={handleGenerate}
                         className="px-8 py-6 rounded-xl font-medium text-lg flex items-center gap-2 group hover:bg-primary/95 transition-all bg-primary text-white"
                         variant="default"
                     >
@@ -41,12 +58,12 @@ export default function RancanganMakanPage() {
         )
     }
 
-    if (isLoading) {
+    if (isPending) {
         return (
             <div className="flex w-full h-full min-h-96 flex-col items-center justify-center gap-6">
                 <h1 className="text-3xl font-bold text-primary">Rancangan Makan</h1>
-                <Loader2 className="w-12 h-12 text-neutral-400 animate-spin" />
-                <p className="text-neutral-500 text-base">Mengakses Jurnal Keluarga Bahagia</p>
+                <Loader2 className="w-12 h-12 text-primary animate-spin" />
+                <p className="text-neutral-500 text-base">AI sedang membuat rancangan makan terbaik untuk Anda...</p>
             </div>
         )
     }
@@ -60,6 +77,13 @@ export default function RancanganMakanPage() {
             </div>
         )
     }
+
+    const grouped = data.reduce<Record<string, MealPlanItem[]>>((acc, item) => {
+        const day = item.day_name
+        if (!acc[day]) acc[day] = []
+        acc[day].push(item)
+        return acc
+    }, {})
 
     return (
         <div className="flex flex-col gap-8 w-full">
@@ -76,25 +100,27 @@ export default function RancanganMakanPage() {
             <p className="text-neutral-600 text-base">Berikut rekomendasi rancangan makan selama seminggu :</p>
 
             <div className="flex flex-col gap-10">
-                {data.map((hari) => (
-                    <div key={hari.hari} className="flex flex-col gap-4">
-                        <h2 className="text-lg font-semibold text-black">{hari.hari}</h2>
+                {Object.entries(grouped).map(([day, items]) => (
+                    <div key={day} className="flex flex-col gap-4">
+                        <h2 className="text-lg font-semibold text-black">{day}</h2>
                         <div className="flex gap-5 overflow-x-auto pb-2 scrollbar-hide snap-x">
-                            {hari.menu.map((item) => (
+                            {items.map((item) => (
                                 <div
-                                    key={item.nama}
+                                    key={item.FoodLogID}
                                     className="flex flex-col gap-3 shrink-0 snap-start w-56 bg-white rounded-2xl shadow-sm border border-neutral-100 overflow-hidden hover:shadow-md transition-shadow"
                                 >
                                     <div className="relative w-full h-52">
                                         <Image
-                                            src={item.gambar}
-                                            alt={item.nama}
+                                            src={getImageUrl(item.food_image)}
+                                            alt={item.food_name}
                                             fill
+                                            unoptimized
                                             className="object-cover"
                                         />
                                     </div>
-                                    <div className="px-4 pb-4 flex items-center justify-center gap-1">
-                                        <p className="font-semibold text-base text-black leading-snug">{item.nama}</p>
+                                    <div className="px-4 pb-4 flex flex-col gap-1">
+                                        <p className="font-semibold text-base text-black leading-snug">{item.food_name}</p>
+                                        <p className="text-sm text-neutral-500 font-medium">{formatTime(item.MealTime)}</p>
                                     </div>
                                 </div>
                             ))}

@@ -1,21 +1,21 @@
-self.addEventListener('push', function(event) {
+self.addEventListener('push', function (event) {
     if (event.data) {
         const data = event.data.json();
         const title = data.title || 'NutriMama Notification';
         const options = {
             body: data.body || 'Anda mendapatkan notifikasi baru.',
-            icon: '/logo.png', // Or a smaller badge icon
+            icon: '/logo.png',
             badge: '/logo.png',
             data: data.url || '/'
         };
-        
+
         event.waitUntil(
             self.registration.showNotification(title, options)
         );
     }
 });
 
-self.addEventListener('notificationclick', function(event) {
+self.addEventListener('notificationclick', function (event) {
     event.notification.close();
     event.waitUntil(
         clients.openWindow(event.notification.data)

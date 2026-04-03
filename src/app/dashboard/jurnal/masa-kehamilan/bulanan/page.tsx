@@ -11,86 +11,66 @@ import { useRouter } from "next/navigation"
 import { submitTracking } from "@/lib/tracking"
 import { useState } from "react"
 
-const harianSchema = z.object({
-  proteinHewani: z.enum(["Terpenuhi", "Tidak Terpenuhi"], {
+const bulananSchema = z.object({
+  suplemenKalsium: z.enum(["Terpenuhi", "Tidak Terpenuhi"], {
     message: "Pilih salah satu opsi",
   }),
-  airPutih: z.enum(["Terpenuhi", "Tidak Terpenuhi"], {
+  pengukuranLila: z.enum(["Terpenuhi", "Tidak Terpenuhi"], {
     message: "Pilih salah satu opsi",
   }),
-  tabletTambahDarah: z.enum(["Terpenuhi", "Tidak Terpenuhi"], {
+  cekHemoglobin: z.enum(["Terpenuhi", "Tidak Terpenuhi"], {
     message: "Pilih salah satu opsi",
   }),
-  asamFolat: z.enum(["Terpenuhi", "Tidak Terpenuhi"], {
+  pemeriksaanAnc: z.enum(["Terpenuhi", "Tidak Terpenuhi"], {
     message: "Pilih salah satu opsi",
   }),
-  mualLemas: z.enum(["Iya", "Tidak"], {
+  pemeriksaanTensi: z.enum(["Terpenuhi", "Tidak Terpenuhi"], {
     message: "Pilih salah satu opsi",
-  })
+  }),
 })
 
-type HarianFormValues = z.infer<typeof harianSchema>
+type BulananFormValues = z.infer<typeof bulananSchema>
 
 const questions = [
-  {
-    name: "proteinHewani" as const,
-    label: "Apakah sudah mengkonsumsi protein hewani utama (Ikan/Daging/Telur)?",
-    options: ["Terpenuhi", "Tidak Terpenuhi"]
-  },
-  {
-    name: "airPutih" as const,
-    label: "Apakah sudah mengkonsumsi air putih minimal 10 gelas?",
-    options: ["Terpenuhi", "Tidak Terpenuhi"]
-  },
-  {
-    name: "tabletTambahDarah" as const,
-    label: "Apakah sudah mengkonsumsi Tablet Tambah Darah (TTD)?",
-    options: ["Terpenuhi", "Tidak Terpenuhi"]
-  },
-  {
-    name: "asamFolat" as const,
-    label: "Apakah sudah mengkonsumsi Asam Folat & Vitamin D3?",
-    options: ["Terpenuhi", "Tidak Terpenuhi"]
-  },
-  {
-    name: "mualLemas" as const,
-    label: "Apakah merasa mual atau lemas?",
-    options: ["Iya", "Tidak"]
-  }
+  { name: "suplemenKalsium" as const, label: "Apakah sudah mengkonsumsi suplemen kalsium?" },
+  { name: "pengukuranLila" as const, label: "Apakah sudah melakukan pengukuran LILA?" },
+  { name: "cekHemoglobin" as const, label: "Apakah sudah cek Kadar Hemoglobin (Hb)?" },
+  { name: "pemeriksaanAnc" as const, label: "Apakah ada melakukan pemeriksaan ANC atau pemeriksaan lain ke klinik?" },
+  { name: "pemeriksaanTensi" as const, label: "Apakah ada melakukan pemeriksaan Tensi (tekanan darah)?" },
 ]
 
-export default function HarianMasaKehamilanPage() {
-  const setHarianMasaKehamilan = useJurnalStore((state) => state.setHarianMasaKehamilan)
+export default function BulananMasaKehamilanPage() {
+  const setBulananMasaKehamilan = useJurnalStore((state) => state.setBulananMasaKehamilan)
   const router = useRouter()
   const [submitting, setSubmitting] = useState(false)
+
   const {
     register,
     handleSubmit,
     formState: { errors }
-  } = useForm<HarianFormValues>({
-    resolver: zodResolver(harianSchema)
+  } = useForm<BulananFormValues>({
+    resolver: zodResolver(bulananSchema)
   })
 
-  const onSubmit = async (data: HarianFormValues) => {
+  const onSubmit = async (data: BulananFormValues) => {
     setSubmitting(true)
     try {
-      await submitTracking("daily", {
-        protein_animal: data.proteinHewani,
-        water_glasses: data.airPutih,
-        iron_pill_taken: data.tabletTambahDarah,
-        folic_acid: data.asamFolat,
-        clinical_symptoms: data.mualLemas === "Iya" ? "Tidak Terpenuhi" : "Terpenuhi",
+      await submitTracking("monthly", {
+        calcium_supplement: data.suplemenKalsium,
+        lila_measurement: data.pengukuranLila,
+        hemoglobin_check: data.cekHemoglobin,
+        anc_check: data.pemeriksaanAnc,
+        blood_pressure_check: data.pemeriksaanTensi,
       })
     } catch {}
-    setHarianMasaKehamilan(data)
-    router.push("/dashboard/jurnal/masa-kehamilan/harian/laporan")
+    setBulananMasaKehamilan(data)
+    router.push("/dashboard/jurnal/masa-kehamilan/bulanan/laporan")
   }
 
   return (
     <div className="flex w-full h-full justify-center lg:py-8">
       <div className="flex flex-col w-full max-w-2xl px-4 lg:px-0">
 
-        {/* Header */}
         <div className="flex items-center gap-3 w-full mb-8">
           <Link href="/dashboard/jurnal/masa-kehamilan" className="text-neutral-800 hover:text-primary transition-colors">
             <ArrowLeft className="w-6 h-6" />
@@ -98,7 +78,7 @@ export default function HarianMasaKehamilanPage() {
           <h1 className="text-2xl md:text-3xl font-bold text-primary">Jurnal Keluarga Bahagia</h1>
         </div>
 
-        <h2 className="text-xl font-medium text-neutral-800 mb-8">Input Harian</h2>
+        <h2 className="text-xl font-medium text-neutral-800 mb-8">Input Bulanan</h2>
 
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-8 w-full mb-12">
           {questions.map((q) => (
@@ -107,28 +87,25 @@ export default function HarianMasaKehamilanPage() {
                 {q.label}
               </label>
               <div className="flex flex-row gap-8 items-center">
-                {q.options.map((opt) => (
+                {["Terpenuhi", "Tidak Terpenuhi"].map((opt) => (
                   <label key={opt} className="flex items-center gap-2 cursor-pointer">
                     <input
                       type="radio"
                       value={opt}
                       {...register(q.name)}
-                      className="w-5 h-5 accent-primary cursor-pointer border-neutral-300"
+                      className="w-5 h-5 accent-primary cursor-pointer"
                     />
                     <span className="text-base text-neutral-800 font-medium">{opt}</span>
                   </label>
                 ))}
               </div>
-              {errors[q.name] && (
-                <span className="text-red-500 text-sm mt-1">{errors[q.name]?.message}</span>
-              )}
+              {errors[q.name] && <span className="text-red-500 text-sm">{errors[q.name]?.message}</span>}
             </div>
           ))}
 
           <Button type="submit" disabled={submitting} className="w-max mt-4 px-8 py-6 text-base font-semibold rounded-xl bg-primary hover:bg-primary-p6 text-white shadow-sm flex items-center justify-center gap-2">
             {submitting ? <Loader2 className="w-5 h-5 animate-spin" /> : <>Input <ArrowRight className="w-4 h-4 ml-2" /></>}
           </Button>
-
         </form>
 
       </div>
