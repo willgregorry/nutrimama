@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import { useParams, useRouter } from "next/navigation"
-import { ArrowLeft } from "lucide-react"
+import { ArrowLeft, Loader2 } from "lucide-react"
 import Link from "next/link"
 import { useArticles } from "@/hooks/useArticles"
 
@@ -12,9 +12,10 @@ export default function KitabIbuDetailPage() {
 
     const kategoriParam = params?.kategori || "masa-kehamilan"
     const kategori = Array.isArray(kategoriParam) ? kategoriParam[0] : kategoriParam
+    const categoryQuery = kategori === "pasca-kelahiran" ? "pasca kelahiran" : "masa kehamilan"
 
-    const { data: allArticles, isLoading } = useArticles();
-    const articles = allArticles?.filter(a => a.kategori === kategori) || [];
+    const { data: allArticles, isLoading } = useArticles()
+    const articles = allArticles?.filter(a => a.category?.toLowerCase() === categoryQuery) || []
 
     return (
         <div className="flex flex-col gap-6 sm:gap-8 w-full h-fit animate-in fade-in duration-300 p-3 sm:p-6 lg:p-8 bg-neutral-50/50 rounded-2xl max-w-6xl mx-auto pb-16 lg:pb-8">
@@ -55,36 +56,40 @@ export default function KitabIbuDetailPage() {
 
             <div className="mt-2 max-h-[70vh] lg:max-h-[580px] overflow-y-auto pr-1 sm:pr-2 custom-scrollbar">
                 {isLoading ? (
-                    <div className="text-center text-neutral-500 py-10 w-full" style={{ fontSize: "clamp(0.875rem, 1.2vw, 1rem)" }}>
-                        Memuat artikel...
+                    <div className="flex justify-center py-10 w-full text-primary">
+                        <Loader2 className="w-8 h-8 animate-spin" />
                     </div>
                 ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-                        {articles.map((article) => (
-                            <Link
-                                href={`/dashboard/kitab-ibu/${kategori}/${article.id}`}
-                                key={article.id}
-                                className="flex flex-col bg-white rounded-2xl overflow-hidden shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.08)] transition-all cursor-pointer border border-neutral-100 group"
-                            >
-                                <div className="relative w-full aspect-4/3 bg-neutral-100 overflow-hidden">
-                                    <Image
-                                        src={article.image}
-                                        alt={article.title}
-                                        fill
-                                        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                                        className="object-cover group-hover:scale-105 transition-transform duration-500"
-                                    />
-                                </div>
-                                <div className="p-3 sm:p-4 bg-white flex flex-col justify-start grow">
-                                    <h3
-                                        className="leading-snug font-medium text-neutral-800 line-clamp-3"
-                                        style={{ fontSize: "clamp(0.75rem, 1.1vw, 0.9rem)" }}
-                                    >
-                                        {article.title}
-                                    </h3>
-                                </div>
-                            </Link>
-                        ))}
+                        {articles.map((article) => {
+                            const baseUrl = process.env.NEXT_PUBLIC_API_URL?.replace('/api', '') || ''
+                            const imgUrl = article.thumbnail?.startsWith('http') ? article.thumbnail : `${baseUrl}${article.thumbnail}`
+                            return (
+                                <Link
+                                    href={`/dashboard/kitab-ibu/${kategori}/${article.slug}`}
+                                    key={article.id}
+                                    className="flex flex-col bg-white rounded-2xl overflow-hidden shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.08)] transition-all cursor-pointer border border-neutral-100 group"
+                                >
+                                    <div className="relative w-full aspect-4/3 bg-neutral-100 overflow-hidden">
+                                        <Image
+                                            src={imgUrl}
+                                            alt={article.title}
+                                            fill
+                                            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                                            className="object-cover group-hover:scale-105 transition-transform duration-500"
+                                        />
+                                    </div>
+                                    <div className="p-3 sm:p-4 bg-white flex flex-col justify-start grow">
+                                        <h3
+                                            className="leading-snug font-medium text-neutral-800 line-clamp-3"
+                                            style={{ fontSize: "clamp(0.75rem, 1.1vw, 0.9rem)" }}
+                                        >
+                                            {article.title}
+                                        </h3>
+                                    </div>
+                                </Link>
+                            )
+                        })}
                     </div>
                 )}
             </div>

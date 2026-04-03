@@ -46,16 +46,28 @@ export default function SignUpPage() {
 
     const mutation = useMutation({
         mutationFn: async (data: SignUpFormValues) => {
-            const { confirmPassword, ...postData } = data;
+            const { confirmPassword, username, ...rest } = data;
+            const postData = { ...rest, name: username };
             const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/register`, postData);
             return response.data;
         },
         onSuccess: (data) => {
-            login(data?.user?.username || data?.user?.name || form.getValues().username);
+            const username = data?.user?.username || data?.user?.name || data?.data?.user?.username || data?.data?.user?.name || data?.data?.username || data?.data?.name || form.getValues().username;
+            const token = data?.token || data?.access_token || data?.data?.token || data?.data?.access_token;
+            if (token) {
+                localStorage.setItem("accessToken", token);
+            }
+            login(username);
             router.push("/dashboard");
         },
-        onError: (error) => {
+        onError: (error: any) => {
             console.error("Registration Failed:", error);
+            const errorMessage = error.response?.data?.error;
+            if (errorMessage === "email already exists" || errorMessage?.includes("already exists")) {
+                form.setError("email", { type: "manual", message: "Email sudah terdaftar!" });
+            } else if (errorMessage) {
+                form.setError("email", { type: "manual", message: errorMessage });
+            }
         }
     });
 

@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { Loader2 } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -40,7 +41,12 @@ export default function SignInPage() {
             return response.data;
         },
         onSuccess: (data) => {
-            login(data?.user?.username || data?.user?.name || form.getValues().email.split("@")[0]);
+            const username = data?.user?.username || data?.user?.name || data?.data?.user?.username || data?.data?.user?.name || data?.data?.username || data?.data?.name || form.getValues().email.split("@")[0];
+            const token = data?.token || data?.access_token || data?.data?.token || data?.data?.access_token;
+            if (token) {
+                localStorage.setItem("accessToken", token);
+            }
+            login(username);
             router.push("/dashboard");
         },
         onError: (error) => {
@@ -139,9 +145,9 @@ export default function SignInPage() {
                                     type="submit"
                                     disabled={mutation.isPending}
                                     variant="default"
-                                    className="mt-4 w-full h-14 text-lg font-semibold text-white rounded-2xl shadow-md transition-colors disabled:opacity-70"
+                                    className="mt-4 w-full h-14 text-lg font-semibold text-white rounded-2xl shadow-md transition-colors disabled:opacity-70 flex items-center justify-center"
                                 >
-                                    {mutation.isPending ? "Memproses..." : "Masuk"}
+                                    {mutation.isPending ? <Loader2 className="w-6 h-6 animate-spin" /> : "Masuk"}
                                 </Button>
                             </form>
                         </Form>

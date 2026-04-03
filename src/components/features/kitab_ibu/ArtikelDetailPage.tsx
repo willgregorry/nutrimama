@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import { useParams, useRouter } from "next/navigation"
-import { ArrowLeft } from "lucide-react"
+import { ArrowLeft, Loader2 } from "lucide-react"
 import { useArticles } from "@/hooks/useArticles"
 
 export default function ArtikelDetailPage() {
@@ -15,18 +15,13 @@ export default function ArtikelDetailPage() {
     const kategoriParam = params?.kategori
     const kategori = Array.isArray(kategoriParam) ? kategoriParam[0] : kategoriParam
 
-    const { data: allArticles, isLoading } = useArticles();
-    const article = allArticles?.find(a => a.id === id)
+    const { data: allArticles, isLoading } = useArticles()
+    const article = allArticles?.find(a => a.slug === id)
 
     if (isLoading) {
         return (
             <div className="flex flex-col items-center justify-center w-full h-full min-h-[50vh]">
-                <h2
-                    className="font-medium text-gray-500"
-                    style={{ fontSize: "clamp(1rem, 2vw, 1.25rem)" }}
-                >
-                    Memuat artikel...
-                </h2>
+                <Loader2 className="w-10 h-10 animate-spin text-primary" />
             </div>
         )
     }
@@ -51,6 +46,9 @@ export default function ArtikelDetailPage() {
         )
     }
 
+    const baseUrl = process.env.NEXT_PUBLIC_API_URL?.replace('/api', '') || ''
+    const imgUrl = article.thumbnail?.startsWith('http') ? article.thumbnail : `${baseUrl}${article.thumbnail}`
+
     return (
         <div className="flex flex-col gap-6 sm:gap-8 w-full h-fit animate-in fade-in duration-300 p-5 sm:p-8 md:p-12 rounded-[32px] max-w-5xl mx-auto border border-white pb-20 lg:pb-12">
 
@@ -71,9 +69,9 @@ export default function ArtikelDetailPage() {
             </div>
 
             <div className="flex flex-col items-center w-full max-w-3xl mx-auto mt-2 sm:mt-4 px-0 sm:px-4">
-                <div className="relative w-full max-w-[90%] sm:max-w-[500px] aspect-[4/3] rounded-sm overflow-hidden mb-6 sm:mb-8 shadow-sm">
+                <div className="relative w-full max-w-[90%] sm:max-w-[500px] aspect-4/3 rounded-sm overflow-hidden mb-6 sm:mb-8 shadow-sm">
                     <Image
-                        src={article.image}
+                        src={imgUrl}
                         alt={article.title}
                         fill
                         sizes="(max-width: 640px) 90vw, 500px"

@@ -1,7 +1,10 @@
 export interface Article {
-    id: string;
-    title: string;
-    image: string;
-    content: string;
-    kategori: string;
+    id: number | string
+    publisher: string
+    title: string
+    slug: string
+    category: string
+    thumbnail: string
+    content: string
+    created_at: string
 }

@@ -1,3 +1,5 @@
+import BimbinganBidanPage from "@/components/features/bimbingan_bidan/BimbinganBidanPage"
+
 export const metadata = {
     title: "Bimbingan Bidan - NutriMama",
     description: "Bimbingan bidan NutriMama",
@@ -5,8 +7,6 @@ export const metadata = {
 
 export default function BimbinganBidan() {
     return (
-        <div>
-            <h1>Bimbingan Bidan</h1>
-        </div>
+        <BimbinganBidanPage />
     )
 }

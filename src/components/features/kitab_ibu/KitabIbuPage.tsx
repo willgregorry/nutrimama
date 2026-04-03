@@ -17,7 +17,7 @@ export default function KitabIbuPage() {
                     href="/dashboard/kitab-ibu/masa-kehamilan"
                     className="flex flex-col items-center justify-center w-full h-full lg:w-1/2 group cursor-pointer transition-transform"
                 >
-                    <div className="relative w-full max-w-md lg:max-w-none aspect-[4/3] rounded-2xl overflow-hidden shadow-md">
+                    <div className="relative w-full max-w-md lg:max-w-none aspect-4/5 rounded-2xl overflow-hidden shadow-md">
                         <Image
                             className="object-cover group-hover:scale-105 transition-transform duration-500"
                             src="/kitab-ibu/masa-kehamilan.webp"
@@ -39,7 +39,7 @@ export default function KitabIbuPage() {
                     href="/dashboard/kitab-ibu/pasca-kelahiran"
                     className="flex flex-col items-center justify-center w-full h-full lg:w-1/2 group cursor-pointer transition-transform"
                 >
-                    <div className="relative w-full max-w-md lg:max-w-none aspect-[4/3] rounded-2xl overflow-hidden shadow-md">
+                    <div className="relative w-full max-w-md lg:max-w-none aspect-4/5 rounded-2xl overflow-hidden shadow-md">
                         <Image
                             className="object-cover group-hover:scale-105 transition-transform duration-500"
                             src="/kitab-ibu/pasca-kelahiran.webp"
